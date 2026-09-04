@@ -178,7 +178,7 @@ watch(inputText, () => {
 /* 输入容器 */
 .chat-input-container {
   position: relative;
-  background: rgba(28, 35, 52, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border-primary);

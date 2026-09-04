@@ -196,7 +196,7 @@
                       :percentage="row.indexing_progress"
                       :stroke-width="4"
                       :show-text="false"
-                      :color="row.indexing_progress >= 100 ? '#7ca586' : '#c9a962'"
+                      :color="row.indexing_progress >= 100 ? '#7ca586' : '#b7791f'"
                       class="progress-glow"
                     />
                   </span>
@@ -205,17 +205,17 @@
 
               <!-- 右：操作轨 -->
               <div class="rc-actions">
-                <el-button type="primary" size="small" link @click="handleViewDetail(row.id)">查看原文</el-button>
+                <el-button type="primary" size="small" @click="handleViewDetail(row.id)">查看原文</el-button>
                 <el-button
                   v-if="!canManage"
                   :type="isFavorited(row.id) ? 'warning' : 'info'"
                   size="small"
-                  link
+                  plain
                   @click="toggleFavorite(row)"
                 >
                   {{ isFavorited(row.id) ? '已收藏' : '收藏' }}
                 </el-button>
-                <el-button v-if="canManage" type="danger" size="small" link @click="handleDelete(row.id, row.title)">删除</el-button>
+                <el-button v-if="canManage" type="danger" size="small" @click="handleDelete(row.id, row.title)">删除</el-button>
               </div>
             </div>
           </div>
@@ -318,7 +318,7 @@
               </span>
               <!-- 文件名：可点击超链接，点击后加载并展示文档完整内容 -->
               <span v-else-if="item.isLink" class="value">
-                <a class="file-name-link" @click="handleViewContent(item.docId)">
+                <a class="file-name-link" @click="handleViewContent(item.docId!)">
                   <el-icon :size="14" class="link-icon"><Link /></el-icon>
                   {{ item.value }}
                 </a>
@@ -516,7 +516,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, nextTick, watch } from 'vue'
 import { knowledgeApi } from '@/api/knowledge'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox, type TagProps } from 'element-plus'
 import { Search, Star } from '@element-plus/icons-vue'
 import { useUserStore } from '@/stores/user'
 
@@ -684,7 +684,7 @@ const statItems = computed(() => [
     displayValue: animatedStats.total_documents,
     icon: 'Collection',
     iconBg: 'rgba(201, 169, 98, 0.15)',
-    iconColor: '#c9a962',
+    iconColor: '#b7791f',
   },
   {
     key: 'total_chunks' as const,
@@ -692,7 +692,7 @@ const statItems = computed(() => [
     displayValue: animatedStats.total_chunks,
     icon: 'Document',
     iconBg: 'rgba(90, 118, 165, 0.15)',
-    iconColor: '#5a76a5',
+    iconColor: '#4f7fc9',
   },
   {
     key: 'recent_uploads' as const,
@@ -700,7 +700,7 @@ const statItems = computed(() => [
     displayValue: animatedStats.recent_uploads,
     icon: 'CircleCheck',
     iconBg: 'rgba(201, 169, 98, 0.15)',
-    iconColor: '#c9a962',
+    iconColor: '#b7791f',
   },
   {
     key: 'processing_count' as const,
@@ -739,7 +739,14 @@ const contentLoading = ref(false)       // 内容加载状态
 const documentContent = ref<any>(null)  // 文档完整内容数据
 
 // 详情项计算属性
-const detailItems = computed(() => {
+const detailItems = computed<Array<{
+  label: string
+  value: unknown
+  isTag: boolean
+  isLink?: boolean
+  docId?: number
+  tagType?: TagProps['type']
+}>>(() => {
   if (!documentDetail.value) return []
   // 文件名显示文本：优先使用file_name，为空时使用title作为可点击链接文本
   const fileNameDisplay = documentDetail.value.file_name || documentDetail.value.title || '查看完整内容'
@@ -942,8 +949,8 @@ const handleDelete = async (docId: number, title: string) => {
 }
 
 // 辅助方法
-const getDocStatusType = (status: string) => {
-  const map: Record<string, string> = { pending: 'info', processing: 'warning', indexed: 'success', completed: 'success', failed: 'danger' }
+const getDocStatusType = (status: string): TagProps['type'] => {
+  const map: Record<string, TagProps['type']> = { pending: 'info', processing: 'warning', indexed: 'success', completed: 'success', failed: 'danger' }
   return map[status] || 'info'
 }
 
@@ -955,10 +962,10 @@ const getDocStatusLabel = (status: string) => {
 /** 文档类型标签配色（案卷墨蓝：法律藏青 / 法规蓝灰 / 案例砖红 / 合同鎏金，半透明底） */
 const docTypeTagStyle = (docType?: string) => {
   const map: Record<string, { background: string; color: string; borderColor: string; boxShadow: string }> = {
-    法律: { background: 'rgba(90, 118, 165, 0.14)', color: '#5a76a5', borderColor: 'rgba(90, 118, 165, 0.4)', boxShadow: '0 0 8px rgba(90, 118, 165, 0.18)' },
-    法规: { background: 'rgba(124, 147, 181, 0.14)', color: '#7c93b5', borderColor: 'rgba(124, 147, 181, 0.4)', boxShadow: '0 0 8px rgba(124, 147, 181, 0.18)' },
+    法律: { background: 'rgba(90, 118, 165, 0.14)', color: '#4f7fc9', borderColor: 'rgba(90, 118, 165, 0.4)', boxShadow: '0 0 8px rgba(90, 118, 165, 0.18)' },
+    法规: { background: 'rgba(124, 147, 181, 0.14)', color: '#7897bf', borderColor: 'rgba(124, 147, 181, 0.4)', boxShadow: '0 0 8px rgba(124, 147, 181, 0.18)' },
     案例: { background: 'rgba(192, 91, 82, 0.12)', color: '#c05b52', borderColor: 'rgba(192, 91, 82, 0.4)', boxShadow: '0 0 8px rgba(192, 91, 82, 0.18)' },
-    合同模板: { background: 'rgba(201, 169, 98, 0.12)', color: '#c9a962', borderColor: 'rgba(201, 169, 98, 0.4)', boxShadow: '0 0 8px rgba(201, 169, 98, 0.18)' },
+    合同模板: { background: 'rgba(201, 169, 98, 0.12)', color: '#b7791f', borderColor: 'rgba(201, 169, 98, 0.4)', boxShadow: '0 0 8px rgba(201, 169, 98, 0.18)' },
   }
   return docType ? map[docType] : undefined
 }
@@ -1028,7 +1035,7 @@ onMounted(() => {
   background:
     linear-gradient(rgba(90, 118, 165, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(90, 118, 165, 0.04) 1px, transparent 1px),
-    linear-gradient(160deg, rgba(23, 29, 42, 0.92) 0%, rgba(17, 21, 31, 0.96) 100%);
+    linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(244, 247, 251, 0.96) 100%);
   background-size: 24px 24px, 24px 24px, cover;
   border: 1px solid var(--border-color);
   transition: border-color var(--duration-normal) var(--ease-smooth),
@@ -1077,7 +1084,7 @@ onMounted(() => {
 
 /* 渐变发光检索按钮 */
 .cmd-launch {
-  background: linear-gradient(135deg, #3c4a68 0%, #46608c 45%, #c9a962 100%) !important;
+  background: linear-gradient(135deg, #2f6fed 0%, #5b91f2 45%, #b7791f 100%) !important;
   border: 1px solid rgba(124, 147, 181, 0.5) !important;
   box-shadow: 0 0 18px rgba(70, 96, 140, 0.45), 0 0 34px rgba(201, 169, 98, 0.16);
   letter-spacing: 6px;
@@ -1089,7 +1096,7 @@ onMounted(() => {
 
   &:hover,
   &:focus {
-    background: linear-gradient(135deg, #46608c 0%, #5a76a5 45%, #dcc489 100%) !important;
+    background: linear-gradient(135deg, #5b91f2 0%, #4f7fc9 45%, #d99b3d 100%) !important;
     box-shadow: 0 0 26px rgba(90, 118, 165, 0.6), 0 0 48px rgba(201, 169, 98, 0.25) !important;
   }
 }
@@ -1138,7 +1145,7 @@ onMounted(() => {
   align-items: center;
   gap: 6px;
   padding: 4px 12px;
-  background: rgba(23, 29, 42, 0.65);
+  background: rgba(255, 255, 255, 0.65);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   font-size: 12px;
@@ -1168,25 +1175,25 @@ onMounted(() => {
   flex-shrink: 0;
   clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 
-  &.dot-all { background: linear-gradient(135deg, #5a76a5, #c9a962); }
-  &.dot-purple { background: #5a76a5; box-shadow: 0 0 6px rgba(90, 118, 165, 0.6); }
-  &.dot-cyan { background: #c9a962; box-shadow: 0 0 6px rgba(201, 169, 98, 0.6); }
+  &.dot-all { background: linear-gradient(135deg, #4f7fc9, #b7791f); }
+  &.dot-purple { background: #4f7fc9; box-shadow: 0 0 6px rgba(90, 118, 165, 0.6); }
+  &.dot-cyan { background: #b7791f; box-shadow: 0 0 6px rgba(201, 169, 98, 0.6); }
   &.dot-pink { background: #c05b52; box-shadow: 0 0 6px rgba(192, 91, 82, 0.6); }
-  &.dot-gold { background: #c9a962; box-shadow: 0 0 6px rgba(201, 169, 98, 0.6); }
+  &.dot-gold { background: #b7791f; box-shadow: 0 0 6px rgba(201, 169, 98, 0.6); }
 }
 
 /* 分色选中态：与 docTypeTagStyle 色映射一致 */
 .chip-purple.is-active {
   background: rgba(90, 118, 165, 0.16);
   border-color: rgba(90, 118, 165, 0.6);
-  color: #7c93b5;
+  color: #7897bf;
   box-shadow: 0 0 10px rgba(90, 118, 165, 0.28);
 }
 
 .chip-cyan.is-active {
   background: rgba(201, 169, 98, 0.14);
   border-color: rgba(201, 169, 98, 0.6);
-  color: #dcc489;
+  color: #d99b3d;
   box-shadow: 0 0 10px rgba(201, 169, 98, 0.28);
 }
 
@@ -1200,7 +1207,7 @@ onMounted(() => {
 .chip-gold.is-active {
   background: rgba(201, 169, 98, 0.14);
   border-color: rgba(201, 169, 98, 0.6);
-  color: #dcc489;
+  color: #d99b3d;
   box-shadow: 0 0 10px rgba(201, 169, 98, 0.28);
 }
 
@@ -1343,7 +1350,7 @@ onMounted(() => {
 .result-card {
   position: relative;
   border: 1px solid var(--border-color);
-  background: linear-gradient(160deg, rgba(23, 29, 42, 0.88) 0%, rgba(17, 21, 31, 0.95) 100%);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.88) 0%, rgba(244, 247, 251, 0.95) 100%);
   animation: cardSlideIn 0.45s var(--ease-smooth) both;
   transition: border-color var(--duration-normal) var(--ease-smooth),
     box-shadow var(--duration-normal) var(--ease-smooth),
@@ -1494,7 +1501,7 @@ onMounted(() => {
 
   :deep(.el-progress-bar__inner) {
     box-shadow: 0 0 8px rgba(70, 96, 140, 0.45);
-    background: linear-gradient(90deg, #3c4a68, #5a76a5, #c9a962);
+    background: linear-gradient(90deg, #2f6fed, #4f7fc9, #b7791f);
   }
 }
 
@@ -1550,7 +1557,7 @@ onMounted(() => {
   gap: 12px;
   padding: 10px 14px;
   border: 1px solid rgba(90, 118, 165, 0.14);
-  background: rgba(17, 21, 31, 0.55);
+  background: rgba(244, 247, 251, 0.55);
 }
 
 /* ==================== AI 免责声明 ==================== */
@@ -1715,7 +1722,7 @@ onMounted(() => {
     flex-direction: column;
     gap: 5px;
     padding: 10px 12px;
-    background: rgba(17, 21, 31, 0.55);
+    background: rgba(244, 247, 251, 0.55);
     border: 1px solid rgba(90, 118, 165, 0.14);
     animation: detailFadeIn 0.5s var(--ease-smooth) both;
 
@@ -1864,7 +1871,7 @@ onMounted(() => {
   gap: 12px;
   padding: 16px 20px;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, rgba(23, 29, 42, 0.85), rgba(17, 21, 31, 0.6));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(244, 247, 251, 0.6));
   border: 1px solid var(--border-color);
 
   .reader-title {
@@ -1907,7 +1914,7 @@ onMounted(() => {
   max-height: 55vh;
   overflow-y: auto;
   padding: 16px 20px;
-  background: rgba(17, 21, 31, 0.6);
+  background: rgba(244, 247, 251, 0.6);
   border: 1px solid var(--border-color);
 
   &::-webkit-scrollbar {
@@ -1989,7 +1996,7 @@ onMounted(() => {
   gap: 40px;
   padding: 14px 20px;
   margin-top: 16px;
-  background: rgba(23, 29, 42, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--border-color);
 
   .reader-stat {
@@ -2053,7 +2060,7 @@ onMounted(() => {
     gap: 12px;
     padding: 7px 10px;
     margin-top: 8px;
-    background: rgba(23, 29, 42, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(90, 118, 165, 0.1);
     transition: all var(--duration-fast) ease;
 

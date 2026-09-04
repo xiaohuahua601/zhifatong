@@ -127,7 +127,7 @@
             v-loading="loading"
             :data="users"
             style="width: 100%"
-            :header-cell-style="{ background: 'rgba(23, 29, 42, 0.85)', color: '#5a76a5', fontWeight: 600 }"
+            :header-cell-style="{ background: 'rgba(255, 255, 255, 0.85)', color: '#4f7fc9', fontWeight: 600 }"
             :row-style="{ background: 'transparent' }"
             empty-text="暂无用户数据"
           >
@@ -212,14 +212,14 @@
             <el-table-column label="操作" width="170" fixed="right" align="center">
               <template #default="{ row }">
                 <div class="action-cell">
-                  <el-button link type="primary" size="small" @click="openEditDialog(row)">
+                  <el-button plain type="primary" size="small" @click="openEditDialog(row as UserManageItem)">
                     <el-icon><Edit /></el-icon>编辑
                   </el-button>
-                  <el-button link type="warning" size="small" @click="openRoleDialog(row)">
+                  <el-button plain type="warning" size="small" @click="openRoleDialog(row as UserManageItem)">
                     <el-icon><UserFilled /></el-icon>角色
                   </el-button>
-                  <el-dropdown trigger="click" @command="(cmd: string) => handleRowCommand(cmd, row)">
-                    <el-button link type="info" size="small" class="more-btn">
+                  <el-dropdown trigger="click" @command="(cmd: string) => handleRowCommand(cmd, row as UserManageItem)">
+                    <el-button plain type="info" size="small" class="more-btn">
                       更多<el-icon class="el-icon--right"><ArrowDown /></el-icon>
                     </el-button>
                     <template #dropdown>
@@ -957,7 +957,7 @@ onMounted(() => {
   border: 1px solid rgba(90, 118, 165, 0.2);
   background:
     linear-gradient(90deg, rgba(70, 96, 140, 0.14), transparent 55%),
-    linear-gradient(160deg, rgba(23, 29, 42, 0.62), rgba(17, 21, 31, 0.45));
+    linear-gradient(160deg, rgba(255, 255, 255, 0.62), rgba(244, 247, 251, 0.45));
 
   .header-main {
     gap: 16px;
@@ -1117,7 +1117,7 @@ onMounted(() => {
 
     /* 表头：半透底，边框让位给渐变光线 */
     th.el-table__cell {
-      background: rgba(17, 21, 31, 0.72) !important;
+      background: rgba(244, 247, 251, 0.72) !important;
       border-bottom: 1px solid transparent !important;
     }
 
@@ -1196,7 +1196,7 @@ onMounted(() => {
 
   /* 首字母 fallback：藏青芯 + 鎏金字 */
   .hex-avatar-fallback {
-    background: linear-gradient(160deg, #1c2334, #141926) !important;
+    background: linear-gradient(160deg, #ffffff, #ffffff) !important;
     color: var(--accent-light) !important;
     font-weight: 700;
     text-shadow: 0 0 10px rgba(90, 118, 165, 0.45);
@@ -1367,7 +1367,7 @@ onMounted(() => {
     --el-pagination-bg-color: transparent;
     --el-pagination-text-color: var(--text-secondary);
     --el-pagination-button-color: var(--text-secondary);
-    --el-pagination-button-bg-color: rgba(23, 29, 42, 0.6);
+    --el-pagination-button-bg-color: rgba(255, 255, 255, 0.6);
     --el-pagination-hover-color: var(--accent-light);
   }
 }
@@ -1411,13 +1411,13 @@ onMounted(() => {
 
 /* 确认按钮：藏青→鎏金渐变发光 */
 .el-button.dialog-confirm {
-  background: linear-gradient(135deg, #2a3448 0%, #46608c 50%, #c9a962 135%) !important;
+  background: linear-gradient(135deg, #eaf0f8 0%, #5b91f2 50%, #b7791f 135%) !important;
   border: 1px solid rgba(124, 147, 181, 0.5) !important;
   box-shadow: 0 0 16px rgba(70, 96, 140, 0.45), 0 0 30px rgba(201, 169, 98, 0.14) !important;
 
   &:hover,
   &:focus {
-    background: linear-gradient(135deg, #46608c 0%, #5a76a5 50%, #dcc489 135%) !important;
+    background: linear-gradient(135deg, #5b91f2 0%, #4f7fc9 50%, #d99b3d 135%) !important;
     border-color: rgba(124, 147, 181, 0.75) !important;
   }
 }
@@ -1466,7 +1466,7 @@ onMounted(() => {
   padding: 11px 14px;
   border: 1px solid rgba(90, 118, 165, 0.16);
   border-left: 3px solid rgba(90, 118, 165, 0.35);
-  background: rgba(23, 29, 42, 0.45);
+  background: rgba(255, 255, 255, 0.45);
   transition: all var(--duration-normal) var(--ease-smooth);
 
   &:hover {

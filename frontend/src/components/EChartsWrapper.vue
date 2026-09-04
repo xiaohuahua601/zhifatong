@@ -50,38 +50,40 @@ const chartInstance = shallowRef<echarts.ECharts>()
  * ---------------------------------------------------------- */
 const darkThemeConfig = {
   color: [
-    '#c9a962',   // 鎏金
-    '#3c4a68',   // 藏青
+    '#b7791f',   // 鎏金
+    '#2f6fed',   // 藏青
     '#7ca586',   // 鼠尾草绿
     '#c9973f',   // 琥珀
     '#c05b52',   // 砖红
-    '#5a76a5',   // 藏青蓝
-    '#dcc489',   // 浅金
+    '#4f7fc9',   // 藏青蓝
+    '#d99b3d',   // 浅金
     '#9a948a',   // 暖灰
   ],
   backgroundColor: 'transparent',
   textStyle: {
-    color: '#a8a294',
+    color: '#526174',
   },
   title: {
     textStyle: {
-      color: '#ece7da',
+      color: '#172033',
     },
     subtextStyle: {
-      color: '#a8a294',
+      color: '#526174',
     },
   },
   legend: {
     textStyle: {
-      color: '#a8a294',
+      color: '#526174',
     },
   },
   tooltip: {
-    backgroundColor: 'rgba(28, 35, 52, 0.95)',
+    className: 'paper-chart-tooltip',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
     borderColor: 'rgba(148, 158, 178, 0.2)',
     textStyle: {
-      color: '#ece7da',
+      color: '#172033',
     },
+    extraCssText: 'color:#172033 !important;',
   },
   categoryAxis: {
     axisLine: {
@@ -95,7 +97,7 @@ const darkThemeConfig = {
       },
     },
     axisLabel: {
-      color: '#a8a294',
+      color: '#526174',
     },
     splitLine: {
       lineStyle: {
@@ -115,7 +117,7 @@ const darkThemeConfig = {
       },
     },
     axisLabel: {
-      color: '#a8a294',
+      color: '#526174',
     },
     splitLine: {
       lineStyle: {

@@ -352,7 +352,7 @@ const getFileIconColor = (status: string) => {
   align-items: center;
   gap: var(--spacing-md);
   cursor: pointer;
-  background: rgba(28, 35, 52, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   transition: all var(--transition-base);
 }
 

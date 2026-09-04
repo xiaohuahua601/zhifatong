@@ -145,8 +145,8 @@
             <!-- 鎏金天平线稿徽记 -->
             <div class="welcome-hex hex-badge hex-ghost">
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g stroke="#c9a962" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="32" cy="11" r="2.5" fill="#c9a962" stroke="none"/>
+                <g stroke="#b7791f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="32" cy="11" r="2.5" fill="#b7791f" stroke="none"/>
                   <path d="M32 14V52"/>
                   <path d="M14 20H50"/>
                   <path d="M14 20L6 33M14 20L22 33"/>
@@ -553,10 +553,10 @@ const inputFocused = ref(false)
 // ==================== 交互方法 ====================
 
 // 发送消息
-const handleSend = async (e?: KeyboardEvent) => {
+const handleSend = async (e?: KeyboardEvent | MouseEvent | Event) => {
   if (e) {
     // Shift+Enter换行，Enter发送
-    if (e.shiftKey) return
+    if (e instanceof KeyboardEvent && e.shiftKey) return
     e.preventDefault()
   }
 
@@ -730,7 +730,7 @@ onUnmounted(() => {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, rgba(20, 25, 38, 0.97), rgba(17, 21, 31, 0.99));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(244, 247, 251, 0.99));
   border-right: 1px solid var(--border-color);
 }
 
@@ -782,7 +782,7 @@ onUnmounted(() => {
 
   .quota-val {
     font-size: 14px;
-    color: #dcc489;
+    color: #d99b3d;
   }
 
   .quota-unit {
@@ -973,7 +973,7 @@ onUnmounted(() => {
   flex-direction: column;
   min-width: 0;
   /* 墨蓝面板底（透出页面纸纹肌理） */
-  background: linear-gradient(180deg, rgba(28, 35, 52, 0.28), transparent 260px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 260px);
 }
 
 /* 顶部会话信息条 */
@@ -984,7 +984,7 @@ onUnmounted(() => {
   flex-shrink: 0;
   padding: 11px 22px;
   border-bottom: 1px solid var(--border-color);
-  background: rgba(20, 25, 38, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
@@ -1001,7 +1001,7 @@ onUnmounted(() => {
 
   .msg-count {
     font-size: 13px;
-    color: #dcc489;
+    color: #d99b3d;
   }
 }
 
@@ -1313,20 +1313,20 @@ onUnmounted(() => {
     font-size: 13px;
     padding: 1px 6px;
     background: rgba(148, 158, 178, 0.14);
-    color: #dcc489;
+    color: #d99b3d;
     border-radius: 4px;
   }
 
   :deep(pre) {
     margin: 8px 0;
     padding: 12px 14px;
-    background: rgba(17, 21, 31, 0.85);
+    background: rgba(244, 247, 251, 0.85);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     overflow-x: auto;
     code {
       background: transparent;
-      color: #ece7da;
+      color: #172033;
       padding: 0;
       font-size: 13px;
       line-height: 1.6;
@@ -1386,7 +1386,7 @@ onUnmounted(() => {
 /* 用户消息：深藏青底 + 金色细边 + 象牙白文字 */
 .message-item.user {
   .message-content {
-    background: linear-gradient(135deg, #3c4a68, #46608c);
+    background: linear-gradient(135deg, #2f6fed, #5b91f2);
     border: 1px solid rgba(201, 169, 98, 0.35);
     border-radius: 6px;
     color: var(--text-primary);
@@ -1396,11 +1396,11 @@ onUnmounted(() => {
       color: #fff;
     }
     :deep(code) {
-      background: rgba(17, 21, 31, 0.4);
-      color: #ece7da;
+      background: rgba(244, 247, 251, 0.4);
+      color: #172033;
     }
     :deep(a) {
-      color: #dcc489;
+      color: #d99b3d;
       text-decoration-color: rgba(220, 196, 137, 0.5);
     }
   }
@@ -1487,7 +1487,7 @@ onUnmounted(() => {
 .citations {
   position: relative;
   border: 1px solid var(--border-color);
-  background: rgba(23, 29, 42, 0.65);
+  background: rgba(255, 255, 255, 0.65);
   padding: 8px 12px;
   width: 100%;
   border-radius: 4px;
@@ -1530,7 +1530,7 @@ onUnmounted(() => {
     gap: 8px;
     align-items: center;
     padding: 6px 10px;
-    background: rgba(17, 21, 31, 0.5);
+    background: rgba(244, 247, 251, 0.5);
     border: 1px solid var(--border-color);
     border-left: 2px solid rgba(201, 169, 98, 0.4);
     border-radius: 3px;
@@ -1747,7 +1747,7 @@ onUnmounted(() => {
   flex-shrink: 0;
   padding: 14px 24px 18px;
   border-top: 1px solid var(--border-color);
-  background: rgba(20, 25, 38, 0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   position: relative;
@@ -1931,6 +1931,105 @@ onUnmounted(() => {
     display: none;
   }
 }
+/* 工作台化问答：回答、依据与输入操作形成稳定的阅读主线 */
+.qa-page {
+  .conv-rail {
+    background: rgba(255, 255, 255, 0.72);
+    border-right-color: rgba(148, 158, 178, 0.16);
+  }
+
+  .chat-topbar {
+    min-height: 46px;
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(148, 158, 178, 0.15);
+  }
+
+  .welcome-particles {
+    display: none;
+  }
+
+  .welcome-hero {
+    margin-bottom: 28px;
+
+    .gradient-title {
+      color: var(--text-primary);
+      background: none;
+      -webkit-text-fill-color: currentColor;
+    }
+  }
+
+  .suggested-wrap {
+    max-width: 760px;
+    box-shadow: none;
+    background: #ffffff;
+  }
+
+  .suggested-item {
+    min-height: 52px;
+    animation: none;
+    opacity: 1;
+    background: #ffffff;
+    border-color: #dfe7f1;
+    border-left-color: #2f6fed;
+    color: #243247;
+
+    .q-text { color: #243247; }
+
+    &:hover {
+      background: #f1f6ff;
+      border-color: #9dbdf3;
+      color: #1d4ed8;
+    }
+  }
+
+  .message-item {
+    animation: none;
+  }
+
+  .msg-bubble {
+    box-shadow: none;
+  }
+
+  .message-item.assistant .message-content {
+    background: #ffffff;
+    border-color: #dfe7f1;
+    color: #243247;
+    box-shadow: 0 4px 12px rgba(31, 61, 104, 0.05);
+  }
+
+  .message-item.assistant .message-content :deep(.law-citation) {
+    color: #8c5914;
+    background: #fff6e5;
+  }
+
+  .console-shell {
+    background: #ffffff;
+    border-color: #cad8eb;
+    box-shadow: 0 4px 14px rgba(31, 61, 104, 0.06);
+  }
+
+  .console-body :deep(.el-textarea__inner) {
+    color: #172033;
+    background: #ffffff;
+  }
+
+  .citations {
+    border-left: 2px solid rgba(201, 169, 98, 0.55);
+  }
+}
+
+@media (max-width: 768px) {
+  .qa-page {
+    .conv-rail {
+      border-right: 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .chat-topbar .topbar-title {
+      font-size: 10px;
+    }
+  }
+}
 </style>
 
 <!-- ==================== 引用来源详情对话框全局样式（el-dialog teleport到body，需非scoped） ==================== -->
@@ -1939,7 +2038,7 @@ onUnmounted(() => {
 .citation-dialog.el-dialog {
   border-radius: 8px;
   overflow: hidden;
-  background: linear-gradient(165deg, #1c2334 0%, #171d2a 100%);
+  background: linear-gradient(165deg, #ffffff 0%, #ffffff 100%);
   border: 1px solid var(--border-color);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
 
@@ -2005,7 +2104,7 @@ onUnmounted(() => {
 /* 引用正文容器：素净面板 */
 .citation-content-box {
   position: relative;
-  background: rgba(23, 29, 42, 0.65);
+  background: rgba(255, 255, 255, 0.65);
   border: 1px solid var(--border-color);
   border-radius: 6px;
   overflow: hidden;

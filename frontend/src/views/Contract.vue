@@ -99,8 +99,8 @@
       <el-table
         :data="filteredContracts"
         style="width: 100%"
-        :header-cell-style="{ background: 'rgba(23, 29, 42, 0.85)', color: '#a8a294', borderBottom: '1px solid rgba(90, 118, 165, 0.22)' }"
-        :cell-style="{ background: 'transparent', color: '#ece7da', borderBottom: '1px solid rgba(90, 118, 165, 0.12)' }"
+        :header-cell-style="{ background: 'rgba(255, 255, 255, 0.85)', color: '#526174', borderBottom: '1px solid rgba(90, 118, 165, 0.22)' }"
+        :cell-style="{ background: 'transparent', color: '#172033', borderBottom: '1px solid rgba(90, 118, 165, 0.12)' }"
         @row-click="handleRowClick"
         :row-class-name="tableRowClassName"
       >
@@ -425,7 +425,7 @@
                 <div class="clause-content corner-brackets">{{ clause.clause_content || clause.content }}</div>
                 <div v-if="clause.suggestion || clause.modification" class="clause-suggestion">
                   <div class="suggestion-icon">
-                    <el-icon :size="14" color="#c9a962"><EditPen /></el-icon>
+                    <el-icon :size="14" color="#b7791f"><EditPen /></el-icon>
                   </div>
                   <span>修改建议：{{ clause.suggestion || clause.modification }}</span>
                 </div>
@@ -773,7 +773,7 @@
 import { ref, reactive, computed, watch, onMounted, onUnmounted } from 'vue'
 import { contractApi } from '@/api/contract'
 import { useUserStore } from '@/stores/user'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox, type TagProps } from 'element-plus'
 
 // ==================== 合同列表 ====================
 const contracts = ref<any[]>([])
@@ -1153,8 +1153,8 @@ const handleRowClick = (row: any) => {
 
 // ==================== 辅助方法 ====================
 
-const getStatusType = (status: string) => {
-  const map: Record<string, string> = {
+const getStatusType = (status: string): TagProps['type'] => {
+  const map: Record<string, TagProps['type']> = {
     uploaded: 'info',
     parsing: 'warning',
     parsed: 'primary',
@@ -1177,8 +1177,8 @@ const getStatusLabel = (status: string) => {
   return map[status] || status
 }
 
-const getRiskLevelType = (level: string) => {
-  const map: Record<string, string> = { '高': 'danger', '中': 'warning', '低': 'success', 'high': 'danger', 'medium': 'warning', 'low': 'success' }
+const getRiskLevelType = (level: string): TagProps['type'] => {
+  const map: Record<string, TagProps['type']> = { '高': 'danger', '中': 'warning', '低': 'success', 'high': 'danger', 'medium': 'warning', 'low': 'success' }
   return map[level] || 'info'
 }
 
@@ -1401,7 +1401,7 @@ onUnmounted(() => {
 
 /* 页面主标题：藏青渐变鎏金文字（缓慢流光） */
 .gradient-title {
-  background: linear-gradient(120deg, #7c93b5 0%, #5a76a5 35%, #c9a962 100%);
+  background: linear-gradient(120deg, #7897bf 0%, #4f7fc9 35%, #b7791f 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1848,7 +1848,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 30px;
   padding: 20px 24px;
-  background: linear-gradient(160deg, rgba(23, 29, 42, 0.85), rgba(17, 21, 31, 0.92));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.85), rgba(244, 247, 251, 0.92));
   border: 1px solid var(--border-color);
 }
 
@@ -1884,7 +1884,7 @@ onUnmounted(() => {
 
 .score-number {
   font-size: 48px;
-  background: linear-gradient(180deg, #ece7da 0%, #7c93b5 55%, #c9a962 100%);
+  background: linear-gradient(180deg, #172033 0%, #7897bf 55%, #b7791f 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1934,7 +1934,7 @@ onUnmounted(() => {
   flex-direction: column;
   gap: 12px;
   padding: 16px 18px;
-  background: rgba(23, 29, 42, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--border-color);
 
   .dim-sh {
@@ -1993,7 +1993,7 @@ onUnmounted(() => {
 
   /* 完整性 - 鎏金渐变（法律权威） */
   .dim-fill-gold {
-    background: linear-gradient(90deg, rgba(201, 169, 98, 0.5), #c9a962);
+    background: linear-gradient(90deg, rgba(201, 169, 98, 0.5), #b7791f);
     box-shadow: 0 0 10px rgba(201, 169, 98, 0.3);
   }
 
@@ -2005,7 +2005,7 @@ onUnmounted(() => {
 
   /* 一致性 - 藏青渐变 */
   .dim-fill-blue {
-    background: linear-gradient(90deg, rgba(90, 118, 165, 0.5), #5a76a5);
+    background: linear-gradient(90deg, rgba(90, 118, 165, 0.5), #4f7fc9);
     box-shadow: 0 0 10px rgba(90, 118, 165, 0.3);
   }
 
@@ -2034,7 +2034,7 @@ onUnmounted(() => {
 .summary-text {
   position: relative;
   padding: 12px 16px;
-  background: rgba(23, 29, 42, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(90, 118, 165, 0.16);
 }
 
@@ -2043,7 +2043,7 @@ onUnmounted(() => {
   position: relative;
   padding: 12px 14px;
   margin-bottom: 10px;
-  background: linear-gradient(160deg, rgba(23, 29, 42, 0.5), rgba(17, 21, 31, 0.72));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.5), rgba(244, 247, 251, 0.72));
   border: 1px solid rgba(90, 118, 165, 0.16);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-spring, ease);
 
@@ -2092,7 +2092,7 @@ onUnmounted(() => {
   }
 
   &.risk-level-medium .clause-node {
-    background: linear-gradient(135deg, #dcc489, #c9a962);
+    background: linear-gradient(135deg, #d99b3d, #b7791f);
     box-shadow: 0 0 9px rgba(201, 169, 98, 0.6);
   }
 
@@ -2263,7 +2263,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 8px;
   padding: 14px 8px 12px;
-  background: linear-gradient(180deg, rgba(23, 29, 42, 0.55), rgba(17, 21, 31, 0.75));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(244, 247, 251, 0.75));
   border: 1px solid rgba(90, 118, 165, 0.16);
   transition: transform 0.3s var(--ease-spring, ease), border-color 0.3s ease, box-shadow 0.3s ease;
 
@@ -2308,12 +2308,12 @@ onUnmounted(() => {
 
 /* 角色语义色：主审铜金 / 复核藏青 / 反方砖红 / 辩论鎏金 / 未解决红系 */
 .role-primary .role-value {
-  color: #7c93b5;
+  color: #7897bf;
   text-shadow: 0 0 12px rgba(90, 118, 165, 0.4);
 }
 
 .role-review .role-value {
-  color: #dcc489;
+  color: #d99b3d;
   text-shadow: 0 0 12px rgba(201, 169, 98, 0.4);
 }
 
@@ -2323,7 +2323,7 @@ onUnmounted(() => {
 }
 
 .role-debate .role-value {
-  color: #c9a962;
+  color: #b7791f;
   text-shadow: 0 0 12px rgba(201, 169, 98, 0.4);
 }
 
@@ -2373,7 +2373,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 5px;
   padding: 12px 8px;
-  background: rgba(23, 29, 42, 0.6);
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(90, 118, 165, 0.14);
   box-shadow: inset 0 2px 0 rgba(90, 118, 165, 0.35);
   transition: border-color 0.25s ease;
@@ -2454,7 +2454,7 @@ onUnmounted(() => {
   }
 
   .opinion-detail.demand {
-    color: #c9a962;
+    color: #b7791f;
   }
 
   .detail-label {
@@ -2500,7 +2500,7 @@ onUnmounted(() => {
 .round-content {
   flex: 1;
   padding: 10px 14px;
-  background: rgba(23, 29, 42, 0.6);
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(90, 118, 165, 0.14);
   transition: border-color 0.25s ease;
 }
@@ -2515,7 +2515,7 @@ onUnmounted(() => {
 
 .round-issue {
   font-size: 12px;
-  color: #c9a962;
+  color: #b7791f;
   margin-bottom: 6px;
   font-style: italic;
 }
@@ -2542,7 +2542,7 @@ onUnmounted(() => {
 }
 
 /* 主审=铜金 / 反方=砖红 */
-.primary-response .response-label { color: #5a76a5; }
+.primary-response .response-label { color: #4f7fc9; }
 .adverse-response .response-label { color: #c05b52; }
 
 /* ---------- 未解决警示：红系 ---------- */
@@ -2583,7 +2583,7 @@ onUnmounted(() => {
   display: flex;
   gap: 12px;
   padding: 14px 16px;
-  background: linear-gradient(160deg, rgba(23, 29, 42, 0.55), rgba(17, 21, 31, 0.8));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.55), rgba(244, 247, 251, 0.8));
   border: 1px solid rgba(90, 118, 165, 0.18);
   transition: border-color 0.3s ease, transform 0.3s var(--ease-spring, ease), box-shadow 0.3s ease;
 
@@ -2711,7 +2711,7 @@ onUnmounted(() => {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #3c4a68, #5a76a5 55%, #c9a962);
+  background: linear-gradient(90deg, #2f6fed, #4f7fc9 55%, #b7791f);
   box-shadow: 0 0 12px rgba(70, 96, 140, 0.45);
   transition: width 0.5s ease;
   position: relative;
@@ -2784,13 +2784,13 @@ onUnmounted(() => {
 
 /* 已完成：鎏金实心发光 */
 .flow-node.done .flow-diamond {
-  background: linear-gradient(135deg, #dcc489, #c9a962);
+  background: linear-gradient(135deg, #d99b3d, #b7791f);
   box-shadow: 0 0 10px rgba(201, 169, 98, 0.6);
 }
 
 /* 当前：脉冲呼吸 */
 .flow-node.active .flow-diamond {
-  background: linear-gradient(135deg, #dcc489, #c9a962);
+  background: linear-gradient(135deg, #d99b3d, #b7791f);
   animation: nodeBreath 1.6s ease-in-out infinite;
 }
 
@@ -2857,7 +2857,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 14px;
   padding: 12px 16px;
-  background: rgba(23, 29, 42, 0.6);
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid var(--border-color);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s var(--ease-spring, ease);
 
@@ -2962,6 +2962,61 @@ onUnmounted(() => {
 
   .step-desc {
     display: none;
+  }
+}
+
+/* 工作流优先：压低装饰，强化待办、风险与下一步操作 */
+.contract-page {
+  gap: 16px;
+
+  .page-header,
+  .stats-bar,
+  .contract-list {
+    animation: none;
+  }
+
+  .page-title-header {
+    min-height: 52px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(201, 169, 98, 0.22);
+
+    .tsh-title {
+      font-size: 22px;
+      color: var(--text-primary);
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      animation: none;
+    }
+  }
+
+  .stats-bar {
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+
+    .stat-item {
+      min-height: 76px;
+      border-radius: 4px;
+      padding: 12px 16px;
+
+      &:hover, &.active {
+        background: rgba(201, 169, 98, 0.075);
+      }
+    }
+  }
+
+  .contract-list {
+    background: rgba(255, 255, 255, 0.48);
+    box-shadow: none;
+  }
+
+  .el-table :deep(.el-table__row) {
+    cursor: pointer;
+  }
+
+  .action-btn + .action-btn {
+    margin-left: 6px;
   }
 }
 </style>

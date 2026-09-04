@@ -140,7 +140,7 @@
       </div>
 
       <!-- 折叠按钮 -->
-      <div class="sidebar-toggle" @click="toggleSidebar">
+      <div class="sidebar-toggle" @click="toggleSidebar()">
         <el-icon :size="18" class="toggle-icon" :class="{ rotated: isCollapsed }">
           <Fold v-if="!isCollapsed" />
           <Expand v-else />
@@ -216,7 +216,6 @@
                     <el-button
                       v-if="notificationStore.hasUnread"
                       type="primary"
-                      link
                       size="small"
                       :loading="notificationStore.loading"
                       @click="handleMarkAllRead"
@@ -593,7 +592,7 @@ const handleUserCommand = async (command: string) => {
     font-weight: 700;
     letter-spacing: 3px;
     /* 鎏金渐变文字（深铜 - 黄铜 - 浅金） */
-    background: linear-gradient(180deg, #dcc489 0%, #c9a962 55%, #a3844a 100%);
+    background: linear-gradient(180deg, #d99b3d 0%, #b7791f 55%, #8c5914 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -658,7 +657,7 @@ const handleUserCommand = async (command: string) => {
     width: 2px;
     height: 55%;
     border-radius: 0 1px 1px 0;
-    background: #c9a962;
+    background: #b7791f;
     opacity: 0;
     transition: opacity var(--duration-normal) ease;
   }
@@ -738,7 +737,7 @@ const handleUserCommand = async (command: string) => {
   padding: 8px 12px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  background: rgba(28, 35, 52, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   flex-shrink: 0;
   transition: all var(--duration-normal) var(--ease-smooth);
 
@@ -820,6 +819,50 @@ const handleUserCommand = async (command: string) => {
   }
 }
 
+/* 深色导航保持高对比，作为浅色内容面的稳定视觉锚点。 */
+.sidebar {
+  background: linear-gradient(180deg, #202c3d 0%, #182333 100%);
+  color: #d9e2ef;
+  border-right-color: #314258;
+
+  .sidebar-logo {
+    color: #f4c777;
+    border-bottom-color: rgba(217, 226, 239, 0.12);
+  }
+
+  .logo-text,
+  .nav-text { color: #d9e2ef; }
+
+  .nav-item {
+    color: #b8c5d6;
+
+    &:hover {
+      color: #ffffff;
+      background: rgba(132, 164, 204, 0.18);
+    }
+
+    &.active {
+      color: #ffffff;
+      background: rgba(55, 105, 171, 0.55);
+
+      .nav-text { color: #ffffff; }
+      .nav-icon { color: #f4c777; }
+    }
+  }
+
+  .nav-divider .tech-label,
+  .sidebar-status .tech-label,
+  .status-version { color: #8fa0b8; }
+
+  .sidebar-status {
+    background: rgba(12, 22, 35, 0.5);
+    border: 1px solid rgba(184, 197, 214, 0.22);
+
+    .status-text { color: #d9e2ef; }
+    .status-version { color: #aab9cd; }
+  }
+}
+
 /* 顶栏左侧：金色圆点 + 衬线渐变标题 + 金色竖分隔线 + 衬线时钟 */
 .header-left {
   display: flex;
@@ -874,7 +917,7 @@ const handleUserCommand = async (command: string) => {
     align-items: center;
     gap: 14px;
     padding: 6px 14px;
-    background: rgba(28, 35, 52, 0.55);
+    background: rgba(255, 255, 255, 0.55);
     border: 1px solid var(--border-color);
     border-radius: 4px;
 
@@ -914,7 +957,7 @@ const handleUserCommand = async (command: string) => {
 .user-capsule {
   border: 1px solid var(--border-color);
   border-radius: 999px;
-  background: rgba(28, 35, 52, 0.55);
+  background: rgba(255, 255, 255, 0.55);
   cursor: pointer;
   transition: border-color var(--duration-normal) ease,
     background var(--duration-normal) ease;
@@ -945,14 +988,14 @@ const handleUserCommand = async (command: string) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #a3844a, #dcc489);
+    background: linear-gradient(135deg, #8c5914, #d99b3d);
 
     :deep(.el-avatar) {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: #1c2334;
-      color: #dcc489;
+      background: #ffffff;
+      color: #d99b3d;
       font-weight: 600;
     }
   }
@@ -965,7 +1008,7 @@ const handleUserCommand = async (command: string) => {
     width: 10px;
     height: 10px;
     background: #7ca586;
-    border: 2px solid #171d2a;
+    border: 2px solid #ffffff;
     border-radius: 50%;
   }
 
@@ -1115,7 +1158,7 @@ const handleUserCommand = async (command: string) => {
   border-radius: 6px !important;
   overflow: hidden;
   box-shadow: var(--shadow-lg) !important;
-  background: #1c2334 !important;
+  background: #ffffff !important;
 
   /* 顶部鎏金细线 */
   &::before {
@@ -1141,7 +1184,7 @@ const handleUserCommand = async (command: string) => {
 .notification-panel {
   position: relative;
   width: 100%;
-  background: linear-gradient(170deg, #1c2334 0%, #171d2a 100%);
+  background: linear-gradient(170deg, #ffffff 0%, #ffffff 100%);
 }
 
 /* 面板头部（内部为 .tech-section-header 区块头） */
@@ -1245,20 +1288,20 @@ const handleUserCommand = async (command: string) => {
   justify-content: center;
 
   &.type-system {
-    background: linear-gradient(160deg, #c9a962, #a3844a);
+    background: linear-gradient(160deg, #b7791f, #8c5914);
     color: #1d1810;
   }
   &.type-contract {
-    background: linear-gradient(160deg, #5a76a5, #3c4a68);
-    color: #ece7da;
+    background: linear-gradient(160deg, #4f7fc9, #2f6fed);
+    color: #172033;
   }
   &.type-legal_update {
     background: linear-gradient(160deg, #7ca586, #688e72);
     color: #f0f4ef;
   }
   &.type-qa {
-    background: linear-gradient(160deg, #7c93b5, #46608c);
-    color: #ece7da;
+    background: linear-gradient(160deg, #7897bf, #5b91f2);
+    color: #172033;
   }
   &.type-warning {
     background: linear-gradient(160deg, #c9973f, #a67c33);
@@ -1306,7 +1349,7 @@ const handleUserCommand = async (command: string) => {
   right: 12px;
   width: 8px;
   height: 8px;
-  background: #c9a962;
+  background: #b7791f;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -1328,6 +1371,36 @@ const handleUserCommand = async (command: string) => {
     font-size: 13px;
     color: var(--text-muted);
     margin: 0;
+  }
+}
+
+/* V2 工作台骨架：导航与页面标题更克制，内容区更聚焦 */
+.sidebar {
+  border-right: 1px solid rgba(151, 171, 196, 0.14);
+  box-shadow: none;
+
+  .sidebar-logo {
+    height: 76px;
+    border-bottom: 1px solid rgba(151, 171, 196, 0.12);
+  }
+
+  .nav-item {
+    margin: 3px 10px;
+    border-radius: 6px;
+
+    &.active { background: rgba(213, 173, 104, 0.1); }
+  }
+}
+
+.header {
+  background: var(--bg-header);
+  box-shadow: none;
+  border-bottom: 1px solid rgba(151, 171, 196, 0.14);
+
+  .page-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    letter-spacing: 0.4px;
   }
 }
 </style>

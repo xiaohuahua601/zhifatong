@@ -159,13 +159,13 @@
         <!-- 图例（圆形小徽记形态） -->
         <div class="graph-legend-row">
           <span class="legend-item">
-            <span class="hex-badge legend-hex" style="background: #c9a962"></span>法律
+            <span class="hex-badge legend-hex" style="background: #b7791f"></span>法律
           </span>
           <span class="legend-item">
-            <span class="hex-badge legend-hex" style="background: #46608c"></span>法条
+            <span class="hex-badge legend-hex" style="background: #5b91f2"></span>法条
           </span>
           <span class="legend-item">
-            <span class="hex-badge legend-hex" style="background: #7c93b5"></span>案例
+            <span class="hex-badge legend-hex" style="background: #7897bf"></span>案例
           </span>
           <span class="legend-item">
             <span class="hex-badge legend-hex" style="background: #7ca586"></span>概念
@@ -186,7 +186,7 @@
             <span class="tsh-sub">活动记录</span>
             <span class="tsh-line"></span>
             <div class="tsh-extra">
-              <el-button text type="primary" size="small">查看全部</el-button>
+              <el-button type="primary" size="small" class="activity-all-btn">查看全部</el-button>
             </div>
           </div>
           <div class="activity-timeline">
@@ -334,7 +334,7 @@ const statCards = reactive([
     value: 0,
     targetValue: 0,
     icon: Collection,
-    iconBg: 'linear-gradient(160deg, #5a76a5, #3c4a68)',
+    iconBg: 'linear-gradient(160deg, #4f7fc9, #2f6fed)',
     trend: '+5%',
     trendType: 'up' as const,
     borderGradient: 'linear-gradient(135deg, rgba(90, 118, 165, 0.5), rgba(90, 118, 165, 0.06))',
@@ -346,7 +346,7 @@ const statCards = reactive([
     value: 0,
     targetValue: 0,
     icon: TrendCharts,
-    iconBg: 'linear-gradient(160deg, #7c93b5, #5f7699)',
+    iconBg: 'linear-gradient(160deg, #7897bf, #5f7699)',
     trend: '+3%',
     trendType: 'up' as const,
     borderGradient: 'linear-gradient(135deg, rgba(124, 147, 181, 0.5), rgba(124, 147, 181, 0.06))',
@@ -429,9 +429,9 @@ const graphLoading = ref(false)
 
 // 知识图谱分类配置（节点类型 -> 颜色 + 名称，鎏金典雅体系）
 const graphCategories = [
-  { name: '法律', itemStyle: { color: '#c9a962' } },       // 鎏金 - 法律本体
-  { name: '法条', itemStyle: { color: '#46608c' } },       // 藏青 - 具体法条
-  { name: '案例', itemStyle: { color: '#7c93b5' } },       // 蓝灰 - 司法案例
+  { name: '法律', itemStyle: { color: '#b7791f' } },       // 鎏金 - 法律本体
+  { name: '法条', itemStyle: { color: '#5b91f2' } },       // 藏青 - 具体法条
+  { name: '案例', itemStyle: { color: '#7897bf' } },       // 蓝灰 - 司法案例
   { name: '概念', itemStyle: { color: '#7ca586' } },       // 鼠尾草绿 - 法律概念
 ]
 
@@ -501,7 +501,7 @@ const quickActions = [
     iconBg: 'linear-gradient(160deg, #b3944f, #8a6f3c)',
     iconColor: '#f5efdf',
     route: '/qa',
-    bgGradient: 'linear-gradient(135deg, rgba(201, 169, 98, 0.08), rgba(20, 25, 38, 0.4))',
+    bgGradient: 'linear-gradient(135deg, rgba(201, 169, 98, 0.08), rgba(255, 255, 255, 0.4))',
   },
   {
     label: '合同审查',
@@ -509,23 +509,23 @@ const quickActions = [
     iconBg: 'linear-gradient(160deg, #688e72, #55775f)',
     iconColor: '#f0f5f1',
     route: '/contract',
-    bgGradient: 'linear-gradient(135deg, rgba(124, 165, 134, 0.08), rgba(20, 25, 38, 0.4))',
+    bgGradient: 'linear-gradient(135deg, rgba(124, 165, 134, 0.08), rgba(255, 255, 255, 0.4))',
   },
   {
     label: '知识库',
     icon: Collection,
-    iconBg: 'linear-gradient(160deg, #5a76a5, #3c4a68)',
-    iconColor: '#ece7da',
+    iconBg: 'linear-gradient(160deg, #4f7fc9, #2f6fed)',
+    iconColor: '#172033',
     route: '/knowledge',
-    bgGradient: 'linear-gradient(135deg, rgba(90, 118, 165, 0.08), rgba(20, 25, 38, 0.4))',
+    bgGradient: 'linear-gradient(135deg, rgba(90, 118, 165, 0.08), rgba(255, 255, 255, 0.4))',
   },
   {
     label: '数据分析',
     icon: TrendCharts,
-    iconBg: 'linear-gradient(160deg, #7c93b5, #5f7699)',
+    iconBg: 'linear-gradient(160deg, #7897bf, #5f7699)',
     iconColor: '#f2f5fa',
     route: '/analysis',
-    bgGradient: 'linear-gradient(135deg, rgba(124, 147, 181, 0.08), rgba(20, 25, 38, 0.4))',
+    bgGradient: 'linear-gradient(135deg, rgba(124, 147, 181, 0.08), rgba(255, 255, 255, 0.4))',
   },
 ]
 
@@ -622,13 +622,15 @@ const renderTrendChart = (data: any[]) => {
     animationEasingUpdate: 'cubicOut',
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'rgba(26, 34, 51, 0.95)',
-      borderColor: 'rgba(201, 169, 98, 0.35)',
-      textStyle: { color: '#ece7da' },
+      className: 'paper-chart-tooltip',
+      backgroundColor: '#fffdf8',
+      borderColor: '#c9d8ec',
+      textStyle: { color: '#172033' },
+      extraCssText: 'color:#172033 !important; box-shadow:0 10px 24px rgba(23,32,51,.12);',
     },
     legend: {
       data: ['咨询数', '合同数', '新用户'],
-      textStyle: { color: '#a8a294' },
+      textStyle: { color: '#526174' },
       top: 0,
     },
     grid: { left: '3%', right: '4%', bottom: '3%', top: '40px', containLabel: true },
@@ -650,12 +652,12 @@ const renderTrendChart = (data: any[]) => {
         type: 'line',
         data: queries,
         smooth: true,
-        lineStyle: { color: '#c9a962', width: 2 },
-        itemStyle: { color: '#c9a962' },
+        lineStyle: { color: '#b7791f', width: 2 },
+        itemStyle: { color: '#b7791f' },
         // 数据点hover放大效果
         emphasis: {
           scale: true,
-          itemStyle: { borderWidth: 3, borderColor: '#dcc489' },
+          itemStyle: { borderWidth: 3, borderColor: '#d99b3d' },
         },
         areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           { offset: 0, color: 'rgba(201, 169, 98, 0.2)' },
@@ -683,8 +685,8 @@ const renderTrendChart = (data: any[]) => {
         type: 'line',
         data: users,
         smooth: true,
-        lineStyle: { color: '#5a76a5', width: 2 },
-        itemStyle: { color: '#5a76a5' },
+        lineStyle: { color: '#4f7fc9', width: 2 },
+        itemStyle: { color: '#4f7fc9' },
         emphasis: {
           scale: true,
           itemStyle: { borderWidth: 3, borderColor: '#a9b8cd' },
@@ -706,7 +708,7 @@ const renderPieChart = (distribution: any[] = []) => {
   }
 
   // 饼图配色（鎏金典雅系）
-  const pieColors = ['#c9a962', '#46608c', '#7c93b5', '#dcc489', '#a3844a', '#7ca586', '#5a76a5', '#9a948a']
+  const pieColors = ['#b7791f', '#5b91f2', '#7897bf', '#d99b3d', '#8c5914', '#7ca586', '#4f7fc9', '#9a948a']
 
   // 将分布数据转换为饼图所需格式，附带配色
   const pieData = distribution.map((item, idx) => ({
@@ -723,15 +725,17 @@ const renderPieChart = (distribution: any[] = []) => {
     animationEasingUpdate: 'cubicOut',
     tooltip: {
       trigger: 'item',
-      backgroundColor: 'rgba(26, 34, 51, 0.95)',
-      borderColor: 'rgba(201, 169, 98, 0.35)',
-      textStyle: { color: '#ece7da' },
+      className: 'paper-chart-tooltip',
+      backgroundColor: '#fffdf8',
+      borderColor: '#c9d8ec',
+      textStyle: { color: '#172033' },
+      extraCssText: 'color:#172033 !important; box-shadow:0 10px 24px rgba(23,32,51,.12);',
     },
     legend: {
       orient: 'vertical',
       right: '5%',
       top: 'center',
-      textStyle: { color: '#a8a294', fontSize: 12 },
+      textStyle: { color: '#526174', fontSize: 12 },
     },
     series: [
       {
@@ -739,10 +743,10 @@ const renderPieChart = (distribution: any[] = []) => {
         radius: ['40%', '70%'],
         center: ['35%', '50%'],
         avoidLabelOverlap: false,
-        itemStyle: { borderRadius: 4, borderColor: '#171d2a', borderWidth: 2 },
+        itemStyle: { borderRadius: 4, borderColor: '#ffffff', borderWidth: 2 },
         label: { show: false },
         emphasis: {
-          label: { show: true, fontSize: 14, fontWeight: 'bold', color: '#ece7da' },
+          label: { show: true, fontSize: 14, fontWeight: 'bold', color: '#172033' },
           // 选中扇区弹出效果
           scaleSize: 10,
         },
@@ -804,6 +808,7 @@ const renderGraphChart = () => {
     animationEasingUpdate: 'quinticInOut',
     animationDurationUpdate: 800,
     tooltip: {
+      className: 'paper-chart-tooltip',
       formatter: (params: any) => {
         // 节点tooltip：显示名称、类型、关联度和描述
         if (params.dataType === 'node') {
@@ -815,9 +820,10 @@ const renderGraphChart = () => {
         }
         return ''
       },
-      backgroundColor: 'rgba(26, 34, 51, 0.95)',
-      borderColor: 'rgba(201, 169, 98, 0.35)',
-      textStyle: { color: '#ece7da' },
+      backgroundColor: '#fffdf8',
+      borderColor: '#c9d8ec',
+      textStyle: { color: '#172033' },
+      extraCssText: 'color:#172033 !important; box-shadow:0 10px 24px rgba(23,32,51,.12);',
     },
     // 力导向布局配置
     series: [
@@ -842,7 +848,7 @@ const renderGraphChart = () => {
         label: {
           show: true,
           position: 'inside',
-          color: '#ece7da',
+          color: '#172033',
           fontSize: 11,
           fontWeight: 600,
           formatter: (params: any) => params.data.name,
@@ -861,7 +867,7 @@ const renderGraphChart = () => {
           show: false,
           formatter: (params: any) => params.data.value,
           fontSize: 10,
-          color: '#a8a294',
+          color: '#526174',
         },
         // 强调样式：hover/巡游时高亮邻接节点和边，并显示关系类型标签
         emphasis: {
@@ -869,7 +875,7 @@ const renderGraphChart = () => {
           scale: 1.25,           // 高亮节点放大，突出巡游效果
           lineStyle: {
             width: 2.5,
-            color: '#c9a962',
+            color: '#b7791f',
           },
           label: {
             fontSize: 13,
@@ -1432,12 +1438,12 @@ onUnmounted(() => {
       height: 24px;
 
       &.query {
-        background: linear-gradient(160deg, #7c93b5, #5a76a5);
+        background: linear-gradient(160deg, #7897bf, #4f7fc9);
         color: #f2f5fa;
       }
 
       &.contract {
-        background: linear-gradient(160deg, #c9a962, #a3844a);
+        background: linear-gradient(160deg, #b7791f, #8c5914);
         color: #1d1810;
       }
 
@@ -1488,9 +1494,10 @@ onUnmounted(() => {
       gap: 12px;
       margin-top: 6px;
       font-size: 11px;
-      color: var(--text-muted);
+      color: #526174;
       padding: 4px 8px;
-      background: rgba(28, 35, 52, 0.55);
+      background: #fffdf8;
+      border: 1px solid #e2e9f2;
       border-left: 2px solid rgba(201, 169, 98, 0.45);
     }
   }

@@ -176,7 +176,7 @@
                   class="role-readonly-input"
                 >
                   <template #suffix>
-                    <el-icon :size="14" color="#a8a294"><Lock /></el-icon>
+                    <el-icon :size="14" color="#526174"><Lock /></el-icon>
                   </template>
                 </el-input>
                 <span class="role-hint">角色由系统管理员分配，如需变更请联系管理员</span>
@@ -359,7 +359,7 @@
 
             <div class="logs-summary stagger-form-item" style="--item-delay: 0s">
               <div class="logs-summary-item tech-frame">
-                <span class="hex-badge hex-ghost summary-hex"><el-icon :size="18" color="#7c93b5"><List /></el-icon></span>
+                <span class="hex-badge hex-ghost summary-hex"><el-icon :size="18" color="#7897bf"><List /></el-icon></span>
                 <div class="summary-info">
                   <span class="summary-value readout-box data-readout">{{ operationLogs.length }}</span>
                   <span class="summary-label">操作记录总数</span>
@@ -373,7 +373,7 @@
                 </div>
               </div>
               <div class="logs-summary-item tech-frame">
-                <span class="hex-badge hex-ghost summary-hex"><el-icon :size="18" color="#c9a962"><Document /></el-icon></span>
+                <span class="hex-badge hex-ghost summary-hex"><el-icon :size="18" color="#b7791f"><Document /></el-icon></span>
                 <div class="summary-info">
                   <span class="summary-value readout-box data-readout">{{ operationLogs.filter(l => l.module === '合同审查').length }}</span>
                   <span class="summary-label">合同操作</span>
@@ -384,8 +384,8 @@
             <el-table
               :data="operationLogs"
               style="width: 100%"
-              :header-cell-style="{ background: 'rgba(28, 35, 52, 0.9)', color: '#a8a294', borderBottom: '1px solid rgba(201, 169, 98, 0.35)' }"
-              :cell-style="{ background: 'transparent', color: '#ece7da', borderBottom: '1px solid rgba(148, 158, 178, 0.12)' }"
+              :header-cell-style="{ background: 'rgba(255, 255, 255, 0.9)', color: '#526174', borderBottom: '1px solid rgba(201, 169, 98, 0.35)' }"
+              :cell-style="{ background: 'transparent', color: '#172033', borderBottom: '1px solid rgba(148, 158, 178, 0.12)' }"
               empty-text="暂无操作记录"
             >
               <el-table-column prop="action" label="操作类型" width="120">
@@ -1119,7 +1119,7 @@ const drawCropCanvas = () => {
   ctx.fillRect(cropState.cropX + cropState.cropSize, cropState.cropY, size - cropState.cropX - cropState.cropSize, cropState.cropSize)
 
   // 绘制裁剪框边框
-  ctx.strokeStyle = '#c9a962'
+  ctx.strokeStyle = '#b7791f'
   ctx.lineWidth = 2
   ctx.strokeRect(cropState.cropX, cropState.cropY, cropState.cropSize, cropState.cropSize)
 
@@ -1369,7 +1369,7 @@ onMounted(() => {
     left: 2px;
     width: 3px;
     border-radius: 2px;
-    background: linear-gradient(180deg, #dcc489, #c9a962 45%, #a3844a);
+    background: linear-gradient(180deg, #d99b3d, #b7791f 45%, #8c5914);
     transition: top 0.35s var(--ease-smooth, ease), height 0.35s var(--ease-smooth, ease);
     z-index: 1;
   }
@@ -1415,7 +1415,7 @@ onMounted(() => {
 
       .tab-node {
         border: none;
-        background: #c9a962;
+        background: #b7791f;
       }
     }
 
@@ -1514,7 +1514,7 @@ onMounted(() => {
     bottom: -1px;
     width: 72px;
     height: 2px;
-    background: linear-gradient(90deg, #5a76a5, #c9a962);
+    background: linear-gradient(90deg, #4f7fc9, #b7791f);
     box-shadow: 0 0 8px rgba(90, 118, 165, 0.5);
   }
 
@@ -1535,7 +1535,7 @@ onMounted(() => {
   align-items: flex-start;
   margin-bottom: 26px;
   padding: 22px 24px;
-  background: linear-gradient(160deg, rgba(23, 29, 42, 0.5), rgba(17, 21, 31, 0.72));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.5), rgba(244, 247, 251, 0.72));
   border: 1px solid rgba(90, 118, 165, 0.15);
   transition: border-color var(--duration-normal, 0.32s) var(--ease-smooth, ease);
 
@@ -1565,11 +1565,11 @@ onMounted(() => {
     border-radius: 50%;
     background: conic-gradient(
       from 0deg,
-      #5a76a5,
-      #c9a962,
+      #4f7fc9,
+      #b7791f,
       #7ca586,
       #c05b52,
-      #5a76a5
+      #4f7fc9
     );
     z-index: -1;
     opacity: 0.6;
@@ -1578,7 +1578,7 @@ onMounted(() => {
 
   /* 头像占位符藏青渐变背景 */
   .avatar-placeholder {
-    background: linear-gradient(135deg, #3c4a68, #46608c);
+    background: linear-gradient(135deg, #2f6fed, #5b91f2);
     color: #fff;
     font-size: 36px;
     font-weight: 700;
@@ -1620,7 +1620,7 @@ onMounted(() => {
 .crop-canvas-wrapper {
   position: relative;
   padding: 10px;
-  background: linear-gradient(160deg, rgba(23, 29, 42, 0.9), rgba(17, 21, 31, 0.85));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 247, 251, 0.85));
   border: 1px solid var(--border-color);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), var(--shadow-glow);
 
@@ -1670,7 +1670,7 @@ onMounted(() => {
   align-items: center;
   gap: 16px;
   padding: 12px 16px;
-  background: rgba(23, 29, 42, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--border-color);
 }
 
@@ -1875,12 +1875,12 @@ onMounted(() => {
   }
 
   :deep(.el-slider__bar) {
-    background: linear-gradient(90deg, #3c4a68, #5a76a5);
+    background: linear-gradient(90deg, #2f6fed, #4f7fc9);
     box-shadow: 0 0 8px rgba(90, 118, 165, 0.35);
   }
 
   :deep(.el-slider__button) {
-    border-color: var(--accent-color, #5a76a5);
+    border-color: var(--accent-color, #4f7fc9);
     box-shadow: 0 0 8px rgba(90, 118, 165, 0.45);
     transition: all var(--duration-normal, 0.32s) var(--ease-spring, ease);
 
@@ -1918,8 +1918,8 @@ onMounted(() => {
   }
 
   :deep(.el-input__inner) {
-    color: var(--text-secondary, #a8a294);
-    -webkit-text-fill-color: var(--text-secondary, #a8a294);
+    color: var(--text-secondary, #526174);
+    -webkit-text-fill-color: var(--text-secondary, #526174);
     cursor: not-allowed;
   }
 }
@@ -1970,7 +1970,7 @@ onMounted(() => {
         .package-name {
           font-size: 16px;
           font-weight: 600;
-          color: var(--text-primary, #ece7da);
+          color: var(--text-primary, #172033);
         }
       }
 
@@ -2033,7 +2033,7 @@ onMounted(() => {
     .usage-title {
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-primary, #ece7da);
+      color: var(--text-primary, #172033);
     }
   }
 
@@ -2054,7 +2054,7 @@ onMounted(() => {
 
       .total {
         font-size: 15px;
-        color: var(--text-secondary, #a8a294);
+        color: var(--text-secondary, #526174);
       }
 
       .unit {
@@ -2083,13 +2083,13 @@ onMounted(() => {
   padding: 12px 16px;
   background: rgba(70, 96, 140, 0.06);
   border: 1px solid rgba(90, 118, 165, 0.16);
-  border-left: 2px solid var(--accent-color, #5a76a5);
+  border-left: 2px solid var(--accent-color, #4f7fc9);
   font-size: 12px;
-  color: var(--text-secondary, #a8a294);
+  color: var(--text-secondary, #526174);
   line-height: 1.6;
 
   :deep(.el-icon) {
-    color: var(--accent-color, #5a76a5);
+    color: var(--accent-color, #4f7fc9);
     flex-shrink: 0;
     margin-top: 2px;
   }
@@ -2106,7 +2106,7 @@ onMounted(() => {
 .panel-subtitle {
   margin: -8px 0 20px;
   font-size: 13px;
-  color: var(--text-secondary, #a8a294);
+  color: var(--text-secondary, #526174);
 }
 
 /* ==================== 账号注销入口（tech-frame 危险区变体） ==================== */
@@ -2146,7 +2146,7 @@ onMounted(() => {
       p {
         margin: 0;
         font-size: 12px;
-        color: var(--text-secondary, #a8a294);
+        color: var(--text-secondary, #526174);
         line-height: 1.5;
       }
     }
@@ -2189,7 +2189,7 @@ onMounted(() => {
 
         .summary-label {
           font-size: 12px;
-          color: var(--text-secondary, #a8a294);
+          color: var(--text-secondary, #526174);
         }
       }
     }
@@ -2197,7 +2197,7 @@ onMounted(() => {
 
   .log-module {
     font-size: 13px;
-    color: var(--text-secondary, #a8a294);
+    color: var(--text-secondary, #526174);
   }
 
   /* 鎏金数据光提示条 */
@@ -2209,12 +2209,12 @@ onMounted(() => {
     padding: 10px 14px;
     background: rgba(201, 169, 98, 0.05);
     border: 1px solid rgba(201, 169, 98, 0.18);
-    border-left: 2px solid var(--neon-cyan, #c9a962);
+    border-left: 2px solid var(--neon-cyan, #b7791f);
     font-size: 12px;
-    color: var(--text-secondary, #a8a294);
+    color: var(--text-secondary, #526174);
 
     :deep(.el-icon) {
-      color: var(--neon-cyan, #c9a962);
+      color: var(--neon-cyan, #b7791f);
       flex-shrink: 0;
     }
   }
@@ -2234,10 +2234,10 @@ onMounted(() => {
     gap: 12px;
     margin-bottom: 24px;
     padding: 12px 16px;
-    background: linear-gradient(135deg, rgba(70, 96, 140, 0.1), rgba(23, 29, 42, 0.5));
+    background: linear-gradient(135deg, rgba(70, 96, 140, 0.1), rgba(255, 255, 255, 0.5));
     border: 1px solid rgba(90, 118, 165, 0.25);
     font-size: 13px;
-    color: var(--text-secondary, #a8a294);
+    color: var(--text-secondary, #526174);
 
     .intro-hex {
       width: 26px;
@@ -2299,7 +2299,7 @@ onMounted(() => {
         &.featured-badge {
           background: rgba(201, 169, 98, 0.12);
           border: 1px solid rgba(201, 169, 98, 0.55);
-          color: #c9a962;
+          color: #b7791f;
         }
       }
 
@@ -2331,7 +2331,7 @@ onMounted(() => {
         .tier-name {
           font-size: 16px;
           font-weight: 700;
-          color: var(--text-primary, #ece7da);
+          color: var(--text-primary, #172033);
         }
       }
 
@@ -2353,7 +2353,7 @@ onMounted(() => {
 
         .period {
           font-size: 12px;
-          color: var(--text-secondary, #a8a294);
+          color: var(--text-secondary, #526174);
         }
       }
 
@@ -2370,7 +2370,7 @@ onMounted(() => {
           gap: 10px;
           padding: 5px 0;
           font-size: 13px;
-          color: var(--text-secondary, #a8a294);
+          color: var(--text-secondary, #526174);
         }
       }
 
@@ -2387,9 +2387,9 @@ onMounted(() => {
     padding: 10px 14px;
     background: rgba(90, 118, 165, 0.06);
     border: 1px solid rgba(90, 118, 165, 0.16);
-    border-left: 2px solid var(--accent-color, #5a76a5);
+    border-left: 2px solid var(--accent-color, #4f7fc9);
     font-size: 12px;
-    color: var(--text-secondary, #a8a294);
+    color: var(--text-secondary, #526174);
   }
 }
 

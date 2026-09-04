@@ -58,6 +58,27 @@
         <!-- 服务说明小字 -->
         <p class="brand-desc">企业级智能法律顾问平台</p>
         <p class="brand-desc-sub">智能法律问答 · 合同风险审查 · 法律知识检索 · 数据可视化分析</p>
+
+        <!-- 核心能力：帮助首次访问者快速理解平台用途 -->
+        <div class="brand-capabilities" aria-label="平台核心能力">
+          <div class="capability-item">
+            <span class="capability-mark">01</span>
+            <span>法规与案例联合检索</span>
+          </div>
+          <div class="capability-item">
+            <span class="capability-mark">02</span>
+            <span>合同风险智能审查</span>
+          </div>
+          <div class="capability-item">
+            <span class="capability-mark">03</span>
+            <span>企业法律事务洞察</span>
+          </div>
+        </div>
+
+        <div class="brand-trust">
+          <span class="trust-dot"></span>
+          <span>企业级权限管理与加密保护</span>
+        </div>
       </div>
     </aside>
 
@@ -98,9 +119,9 @@
 
           <!-- 登录表单 -->
           <transition name="form-fade" mode="out-in">
-            <el-form
-              v-if="activeTab === 'login'"
-              key="login"
+            <!-- transition 必须只有一个根节点；登录表单与测试入口作为同一状态内容切换 -->
+            <div v-if="activeTab === 'login'" key="login">
+              <el-form
               ref="loginFormRef"
               :model="loginForm"
               :rules="loginRules"
@@ -138,10 +159,10 @@
                   <span class="btn-text">登 录</span>
                 </el-button>
               </el-form-item>
-            </el-form>
+              </el-form>
 
-            <!-- 快捷登录：一键填充不同角色账户，便于测试 -->
-            <div v-if="activeTab === 'login'" class="quick-login">
+              <!-- 快捷登录：一键填充不同角色账户，便于测试 -->
+              <div class="quick-login">
               <div class="quick-login-divider">
                 <span>快捷登录（测试用）</span>
               </div>
@@ -158,6 +179,7 @@
                   <el-icon :size="14"><component :is="account.icon" /></el-icon>
                   <span>{{ account.label }}</span>
                 </button>
+              </div>
               </div>
             </div>
 
@@ -412,7 +434,7 @@ const handleRegister = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(162deg, #171d2a 0%, #11151f 55%, #141926 100%);
+  background: linear-gradient(162deg, #ffffff 0%, #f4f7fb 55%, #ffffff 100%);
   overflow: hidden;
 }
 
@@ -466,7 +488,7 @@ const handleRegister = async () => {
   width: 96px;
   height: 96px;
   margin: 0 auto 30px;
-  color: #c9a962;
+  color: #b7791f;
   opacity: 0.92;
 
   svg {
@@ -483,7 +505,7 @@ const handleRegister = async () => {
   font-weight: 700;
   letter-spacing: 8px;
   margin-bottom: 14px;
-  background: linear-gradient(120deg, #dcc489 0%, #c9a962 45%, #a3844a 100%);
+  background: linear-gradient(120deg, #d99b3d 0%, #b7791f 45%, #8c5914 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -514,7 +536,7 @@ const handleRegister = async () => {
     width: 5px;
     height: 5px;
     transform: translate(-50%, -50%) rotate(45deg);
-    background: #11151f;
+    background: #f4f7fb;
     border: 1px solid rgba(201, 169, 98, 0.55);
   }
 }
@@ -531,6 +553,52 @@ const handleRegister = async () => {
   font-size: 12px;
   letter-spacing: 1px;
   color: var(--text-muted);
+}
+
+/* 平台能力清单：让左侧品牌区具备业务信息，而不是仅作为装饰。 */
+.brand-capabilities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 28px auto 18px;
+  text-align: left;
+}
+
+.capability-item {
+  min-height: 72px;
+  padding: 12px 10px;
+  border: 1px solid rgba(183, 121, 31, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 253, 248, 0.68);
+  color: #526174;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.capability-mark {
+  display: block;
+  margin-bottom: 5px;
+  color: #b7791f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.brand-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #66778c;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+}
+
+.trust-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #159a68;
+  box-shadow: 0 0 0 3px rgba(21, 154, 104, 0.1);
 }
 
 /* ==================== 右侧登录表单区（深墨蓝） ==================== */
@@ -561,7 +629,7 @@ const handleRegister = async () => {
   position: relative;
   padding: 40px 36px 30px;
   border-radius: 6px;
-  background: linear-gradient(168deg, #1c2334 0%, #171d2a 100%);
+  background: linear-gradient(168deg, #ffffff 0%, #ffffff 100%);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-lg);
 
@@ -613,7 +681,7 @@ const handleRegister = async () => {
 .tab-switch {
   display: flex;
   position: relative;
-  background: rgba(17, 21, 31, 0.6);
+  background: rgba(244, 247, 251, 0.6);
   border-radius: 4px;
   padding: 3px;
   border: 1px solid var(--border-color);
@@ -690,7 +758,7 @@ const handleRegister = async () => {
   /* 自动填充深色适配（避免浏览器白色填充） */
   :deep(.el-input__inner) {
     &:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0 1000px #1c2334 inset;
+      -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
       -webkit-text-fill-color: var(--text-primary);
       caret-color: var(--accent-color);
       transition: background-color 5000s ease-in-out 0s;
@@ -771,7 +839,7 @@ const handleRegister = async () => {
   padding: 8px 4px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  background: rgba(28, 35, 52, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--text-secondary);
   font-size: 13px;
   cursor: pointer;
@@ -862,6 +930,9 @@ const handleRegister = async () => {
   .form-panel { flex: 0 0 60%; }
   .brand-content { padding: 24px; }
   .brand-rule { left: 28px; right: 28px; }
+  .brand-capabilities { grid-template-columns: 1fr; max-width: 260px; }
+  .capability-item { min-height: auto; padding: 8px 10px; }
+  .capability-mark { display: inline; margin-right: 6px; }
 }
 
 @media (max-width: 768px) {
@@ -882,6 +953,8 @@ const handleRegister = async () => {
     height: 72px;
     margin-bottom: 20px;
   }
+  .brand-capabilities,
+  .brand-trust { display: none; }
 
   .form-panel {
     flex: 1;

@@ -1,42 +1,42 @@
 // ==================== 智法通全局SCSS变量（案卷墨蓝 · 与 global.scss 对齐） ====================
 
 // 主色调 - 藏青
-$primary-color: #3c4a68;
-$primary-light: #46608c;
-$primary-lighter: #5a76a5;
-$primary-dark: #2a3448;
+$primary-color: #2f6fed;
+$primary-light: #5b91f2;
+$primary-lighter: #4f7fc9;
+$primary-dark: #eaf0f8;
 
 // 强调色 - 黄铜鎏金
-$accent-color: #c9a962;
-$accent-light: #dcc489;
-$accent-dark: #a3844a;
+$accent-color: #b7791f;
+$accent-light: #d99b3d;
+$accent-dark: #8c5914;
 
 // 功能色（低饱和）
 $success-color: #7ca586;
 $warning-color: #c9973f;
 $danger-color: #c05b52;
-$info-color: #7c93b5;
+$info-color: #7897bf;
 
 // 背景色 - 墨蓝纸感
-$bg-primary: #11151f;
-$bg-secondary: #171d2a;
-$bg-card: rgba(30, 38, 54, 0.75);
+$bg-primary: #f4f7fb;
+$bg-secondary: #ffffff;
+$bg-card: rgba(255, 255, 255, 0.75);
 $bg-card-hover: rgba(60, 74, 104, 0.45);
-$bg-sidebar: #141926;
-$bg-header: rgba(20, 25, 38, 0.92);
+$bg-sidebar: #ffffff;
+$bg-header: rgba(255, 255, 255, 0.92);
 
 // 文字色 - 象牙白系
-$text-primary: #ece7da;
-$text-secondary: #a8a294;
-$text-muted: #767265;
-$text-accent: #c9a962;
+$text-primary: #172033;
+$text-secondary: #526174;
+$text-muted: #7b8797;
+$text-accent: #b7791f;
 
 // 边框色
 $border-color: rgba(148, 158, 178, 0.18);
 $border-light: rgba(148, 158, 178, 0.1);
 
 // 毛玻璃（弱化，仅作兼容）
-$glass-bg: rgba(30, 38, 54, 0.75);
+$glass-bg: rgba(255, 255, 255, 0.75);
 $glass-blur: blur(12px);
 $glass-border: 1px solid rgba(201, 169, 98, 0.22);
 

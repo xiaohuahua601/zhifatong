@@ -222,7 +222,7 @@ watch(() => props.score, () => {
 <style scoped>
 /* 仪表盘容器 */
 .risk-gauge-container {
-  background: rgba(28, 35, 52, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(148, 158, 178, 0.14);

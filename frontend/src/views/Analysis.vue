@@ -310,9 +310,11 @@ const renderHotTopicChart = (topics: any[]) => {
   hotTopicChart.setOption({
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'rgba(23, 29, 42, 0.95)',
+      className: 'paper-chart-tooltip',
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
       borderColor: 'rgba(90, 118, 165, 0.45)',
-      textStyle: { color: '#ece7da' },
+      textStyle: { color: '#172033' },
+      extraCssText: 'color:#172033 !important;',
     },
     /* 更丰富的动画配置 */
     animationDuration: 1200,
@@ -323,13 +325,13 @@ const renderHotTopicChart = (topics: any[]) => {
       type: 'category',
       data: categories,
       axisLine: { lineStyle: { color: 'rgba(90, 118, 165, 0.35)' } },
-      axisLabel: { color: '#a8a294', rotate: 30 },
+      axisLabel: { color: '#526174', rotate: 30 },
     },
     yAxis: {
       type: 'value',
       axisLine: { show: false },
       splitLine: { lineStyle: { color: 'rgba(90, 118, 165, 0.14)' } },
-      axisLabel: { color: '#a8a294' },
+      axisLabel: { color: '#526174' },
     },
     series: [
       {
@@ -338,7 +340,7 @@ const renderHotTopicChart = (topics: any[]) => {
           value: val,
           itemStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: idx < 3 ? '#5a76a5' : '#46608c' },
+              { offset: 0, color: idx < 3 ? '#4f7fc9' : '#5b91f2' },
               { offset: 1, color: idx < 3 ? 'rgba(90, 118, 165, 0.25)' : 'rgba(70, 96, 140, 0.25)' },
             ]),
             borderRadius: [4, 4, 0, 0],
@@ -380,16 +382,18 @@ const renderTrendChart = (trends: any[]) => {
   trendChart.setOption({
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'rgba(23, 29, 42, 0.95)',
+      className: 'paper-chart-tooltip',
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
       borderColor: 'rgba(90, 118, 165, 0.45)',
-      textStyle: { color: '#ece7da' },
+      textStyle: { color: '#172033' },
+      extraCssText: 'color:#172033 !important;',
     },
     /* 更丰富的动画配置 */
     animationDuration: 1500,
     animationEasing: 'cubicInOut',
     legend: {
       data: ['查询量', '正面反馈率', '平均置信度'],
-      textStyle: { color: '#a8a294' },
+      textStyle: { color: '#526174' },
       top: 0,
     },
     grid: { left: '3%', right: '4%', bottom: '3%', top: '40px', containLabel: true },
@@ -397,7 +401,7 @@ const renderTrendChart = (trends: any[]) => {
       type: 'category',
       data: dates,
       axisLine: { lineStyle: { color: 'rgba(90, 118, 165, 0.35)' } },
-      axisLabel: { color: '#a8a294' },
+      axisLabel: { color: '#526174' },
     },
     yAxis: [
       {
@@ -405,7 +409,7 @@ const renderTrendChart = (trends: any[]) => {
         name: '查询量',
         axisLine: { show: false },
         splitLine: { lineStyle: { color: 'rgba(90, 118, 165, 0.14)' } },
-        axisLabel: { color: '#a8a294' },
+        axisLabel: { color: '#526174' },
       },
       {
         type: 'value',
@@ -414,7 +418,7 @@ const renderTrendChart = (trends: any[]) => {
         max: 100,
         axisLine: { show: false },
         splitLine: { show: false },
-        axisLabel: { color: '#a8a294', formatter: '{value}%' },
+        axisLabel: { color: '#526174', formatter: '{value}%' },
       },
     ],
     series: [
@@ -456,8 +460,8 @@ const renderTrendChart = (trends: any[]) => {
         yAxisIndex: 1,
         data: confidences,
         smooth: true,
-        lineStyle: { color: '#c9a962', width: 2 },
-        itemStyle: { color: '#c9a962' },
+        lineStyle: { color: '#b7791f', width: 2 },
+        itemStyle: { color: '#b7791f' },
         /* 面积渐变+数据点标记 */
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -482,7 +486,7 @@ const renderClusterChart = (clusters: any[], scatterData: any[]) => {
     clusterChart = echarts.init(clusterChartRef.value)
   }
 
-  const colors = ['#c9a962', '#3c4a68', '#7ca586', '#c9973f', '#c05b52', '#5a76a5', '#dcc489']
+  const colors = ['#b7791f', '#2f6fed', '#7ca586', '#c9973f', '#c05b52', '#4f7fc9', '#d99b3d']
 
   // 按 cluster_id 分组散点数据，使用 cluster_name 作为图例名称
   const clusterMap = new Map<number, string>()
@@ -532,9 +536,11 @@ const renderClusterChart = (clusters: any[], scatterData: any[]) => {
 
   clusterChart.setOption({
     tooltip: {
-      backgroundColor: 'rgba(23, 29, 42, 0.95)',
+      className: 'paper-chart-tooltip',
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
       borderColor: 'rgba(90, 118, 165, 0.45)',
-      textStyle: { color: '#ece7da' },
+      textStyle: { color: '#172033' },
+      extraCssText: 'color:#172033 !important;',
       formatter: (params: any) => {
         const name = params.seriesName
         return `${name}<br/>x: ${params.value[0]}<br/>y: ${params.value[1]}`
@@ -544,20 +550,20 @@ const renderClusterChart = (clusters: any[], scatterData: any[]) => {
     animationDuration: 1500,
     animationEasing: 'elasticOut',
     legend: {
-      textStyle: { color: '#a8a294' },
+      textStyle: { color: '#526174' },
       top: 0,
     },
     grid: { left: '3%', right: '4%', bottom: '3%', top: '40px', containLabel: true },
     xAxis: {
       name: '特征X',
       axisLine: { lineStyle: { color: 'rgba(90, 118, 165, 0.35)' } },
-      axisLabel: { color: '#a8a294' },
+      axisLabel: { color: '#526174' },
       splitLine: { lineStyle: { color: 'rgba(90, 118, 165, 0.1)' } },
     },
     yAxis: {
       name: '特征Y',
       axisLine: { show: false },
-      axisLabel: { color: '#a8a294' },
+      axisLabel: { color: '#526174' },
       splitLine: { lineStyle: { color: 'rgba(90, 118, 165, 0.1)' } },
     },
     series,
@@ -665,7 +671,7 @@ onUnmounted(() => {
     font-weight: 700;
     letter-spacing: 2px;
     line-height: 1.1;
-    background: linear-gradient(120deg, #7c93b5, #5a76a5 40%, #c9a962 100%);
+    background: linear-gradient(120deg, #7897bf, #4f7fc9 40%, #b7791f 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -692,7 +698,7 @@ onUnmounted(() => {
 /* ==================== 时间范围选择器（切角小组件风） ==================== */
 .time-range-group {
   :deep(.el-radio-button__inner) {
-    background: rgba(23, 29, 42, 0.65);
+    background: rgba(255, 255, 255, 0.65);
     border-color: var(--border-color);
     color: var(--text-secondary);
     transition: all var(--duration-normal) var(--ease-smooth);
@@ -712,7 +718,7 @@ onUnmounted(() => {
 
 /* ==================== 刷新按钮（藏青旋转） ==================== */
 .refresh-btn {
-  background: rgba(23, 29, 42, 0.65) !important;
+  background: rgba(255, 255, 255, 0.65) !important;
   border-color: var(--border-color) !important;
   color: var(--text-secondary) !important;
   transition: all var(--duration-normal) var(--ease-smooth);
@@ -848,14 +854,14 @@ onUnmounted(() => {
 
     .rank-bar-wrapper {
       height: 4px;
-      background: rgba(23, 29, 42, 0.7);
+      background: rgba(255, 255, 255, 0.7);
       overflow: hidden;
 
       /* 进度条：藏青→鎏金渐变（保留） */
       .rank-bar {
         height: 100%;
         width: 0;
-        background: linear-gradient(90deg, #3c4a68, #5a76a5, #c9a962);
+        background: linear-gradient(90deg, #2f6fed, #4f7fc9, #b7791f);
         transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         position: relative;
 
@@ -868,7 +874,7 @@ onUnmounted(() => {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #c9a962;
+          background: #b7791f;
           box-shadow: 0 0 8px rgba(201, 169, 98, 0.7);
         }
       }

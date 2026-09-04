@@ -8,8 +8,8 @@ import { ref, computed } from 'vue'
 import {
   CopyDocument,
   Check,
-  ThumbUp,
-  ThumbDown,
+  Select,
+  Close,
   TopRight
 } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
@@ -137,8 +137,8 @@ const isAssistant = computed(() => props.role === 'assistant')
       <div v-if="isAssistant" class="avatar-assistant">
         <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
           <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z"
-            fill="#c9a962" opacity="0.2" stroke="#c9a962" stroke-width="1.5"/>
-          <path d="M9 12L11 14L15 10" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round"/>
+            fill="#b7791f" opacity="0.2" stroke="#b7791f" stroke-width="1.5"/>
+          <path d="M9 12L11 14L15 10" stroke="#b7791f" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div>
       <div v-else class="avatar-user">
@@ -195,7 +195,7 @@ const isAssistant = computed(() => props.role === 'assistant')
               :class="{ 'is-active': feedbackType === 'like' }"
               @click="handleFeedback('like')"
             >
-              <el-icon :size="14"><ThumbUp /></el-icon>
+              <el-icon :size="14"><Select /></el-icon>
             </div>
           </el-tooltip>
           <!-- 踩 -->
@@ -205,7 +205,7 @@ const isAssistant = computed(() => props.role === 'assistant')
               :class="{ 'is-active': feedbackType === 'dislike' }"
               @click="handleFeedback('dislike')"
             >
-              <el-icon :size="14"><ThumbDown /></el-icon>
+              <el-icon :size="14"><Close /></el-icon>
             </div>
           </el-tooltip>
         </div>
@@ -277,7 +277,7 @@ const isAssistant = computed(() => props.role === 'assistant')
 
 /* 助手消息气泡 */
 .chat-message-assistant .message-body {
-  background: rgba(28, 35, 52, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(148, 158, 178, 0.14);
   border-radius: 8px 8px 8px 2px;
   padding: var(--spacing-md) var(--spacing-base);
