@@ -1,0 +1,207 @@
+{
+  "version": "V5.0",
+  "timestamp": "2026-07-02T22:34:37.510023",
+  "total": 28,
+  "passed": 28,
+  "vulnerabilities": 0,
+  "security_rate": 100.0,
+  "duration_s": 38.1,
+  "details": [
+    {
+      "category": "SQL注入防护",
+      "name": "全部SQL注入payload被拦截",
+      "status": "PASS",
+      "detail": "测试8个payload，均返回400/401且无SQL错误泄露",
+      "severity": "HIGH"
+    },
+    {
+      "category": "SQL注入防护",
+      "name": "知识库搜索SQL注入防护",
+      "status": "PASS",
+      "detail": "搜索接口参数化查询，无SQL错误泄露",
+      "severity": "HIGH"
+    },
+    {
+      "category": "XSS攻击防护",
+      "name": "AI问答XSS防护",
+      "status": "PASS",
+      "detail": "AI回答中未发现原始script标签",
+      "severity": "HIGH"
+    },
+    {
+      "category": "XSS攻击防护",
+      "name": "注册字段XSS防护",
+      "status": "PASS",
+      "detail": "注册接口对XSS payload进行了转义或拒绝",
+      "severity": "HIGH"
+    },
+    {
+      "category": "权限控制(RBAC)",
+      "name": "普通用户访问用户列表",
+      "status": "PASS",
+      "detail": "HTTP 403 (拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "权限控制(RBAC)",
+      "name": "普通用户访问角色列表",
+      "status": "PASS",
+      "detail": "HTTP 403 (拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "权限控制(RBAC)",
+      "name": "普通用户访问仪表盘概览",
+      "status": "PASS",
+      "detail": "HTTP 403 (拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "权限控制(RBAC)",
+      "name": "普通用户访问数据分析",
+      "status": "PASS",
+      "detail": "HTTP 403 (拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "权限控制(RBAC)",
+      "name": "普通用户访问分析概览",
+      "status": "PASS",
+      "detail": "HTTP 403 (拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "权限控制(RBAC)",
+      "name": "水平越权-访问他人对话",
+      "status": "PASS",
+      "detail": "HTTP 400 (拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "权限控制(RBAC)",
+      "name": "法务访问用户管理",
+      "status": "PASS",
+      "detail": "HTTP 403 (拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "JWT安全",
+      "name": "无效JWT被拒",
+      "status": "PASS",
+      "detail": "HTTP 401",
+      "severity": "LOW"
+    },
+    {
+      "category": "JWT安全",
+      "name": "JWT篡改防护",
+      "status": "PASS",
+      "detail": "HTTP 401 (签名验证失败)",
+      "severity": "LOW"
+    },
+    {
+      "category": "JWT安全",
+      "name": "无Bearer前缀被拒",
+      "status": "PASS",
+      "detail": "HTTP 401",
+      "severity": "LOW"
+    },
+    {
+      "category": "JWT安全",
+      "name": "空Authorization头被拒",
+      "status": "PASS",
+      "detail": "HTTP 401",
+      "severity": "LOW"
+    },
+    {
+      "category": "文件上传安全",
+      "name": "路径遍历防护",
+      "status": "PASS",
+      "detail": "测试4个路径遍历payload，均被拒绝或净化",
+      "severity": "HIGH"
+    },
+    {
+      "category": "文件上传安全",
+      "name": "恶意文件类型拦截",
+      "status": "PASS",
+      "detail": "测试4种恶意文件类型，均被拒绝",
+      "severity": "HIGH"
+    },
+    {
+      "category": "文件上传安全",
+      "name": "超大文件拦截",
+      "status": "PASS",
+      "detail": "HTTP 400 (100MB文件, 拒绝)",
+      "severity": "LOW"
+    },
+    {
+      "category": "CORS配置",
+      "name": "CORS来源限制",
+      "status": "PASS",
+      "detail": "ACAO: (未设置)",
+      "severity": "LOW"
+    },
+    {
+      "category": "CORS配置",
+      "name": "CORS凭据配置",
+      "status": "PASS",
+      "detail": "ACAO=, ACAC=true",
+      "severity": "HIGH"
+    },
+    {
+      "category": "敏感信息泄露",
+      "name": "错误响应不泄露堆栈",
+      "status": "PASS",
+      "detail": "HTTP 400, 无堆栈泄露",
+      "severity": "LOW"
+    },
+    {
+      "category": "敏感信息泄露",
+      "name": "OpenAPI不暴露哈希密码字段",
+      "status": "PASS",
+      "detail": "未暴露",
+      "severity": "LOW"
+    },
+    {
+      "category": "敏感信息泄露",
+      "name": "健康检查不泄露内部信息",
+      "status": "PASS",
+      "detail": "HTTP 200, 无内部信息",
+      "severity": "LOW"
+    },
+    {
+      "category": "敏感信息泄露",
+      "name": "HTTP安全头: x-content-type-options",
+      "status": "PASS",
+      "detail": "实际: nosniff, 期望: nosniff",
+      "severity": "LOW"
+    },
+    {
+      "category": "敏感信息泄露",
+      "name": "HTTP安全头: x-frame-options",
+      "status": "PASS",
+      "detail": "实际: SAMEORIGIN, 期望: ['deny', 'sameorigin']",
+      "severity": "LOW"
+    },
+    {
+      "category": "敏感信息泄露",
+      "name": "HTTP安全头: x-xss-protection",
+      "status": "PASS",
+      "detail": "实际: 1; mode=block, 期望: (任意)",
+      "severity": "LOW"
+    },
+    {
+      "category": "密码强度校验",
+      "name": "弱密码全部拦截",
+      "status": "PASS",
+      "detail": "测试7个弱密码，均被拒绝",
+      "severity": "HIGH"
+    },
+    {
+      "category": "登录防爆破",
+      "name": "账号锁定机制",
+      "status": "PASS",
+      "detail": "6次失败后正确密码登录: HTTP 400 (锁定)",
+      "severity": "LOW"
+    }
+  ]
+}

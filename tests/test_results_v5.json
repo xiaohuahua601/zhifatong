@@ -1,0 +1,427 @@
+{
+  "version": "V5.0",
+  "timestamp": "2026-07-02T22:33:53.010894",
+  "total": 54,
+  "passed": 54,
+  "failed": 0,
+  "pass_rate": 100.0,
+  "duration_s": 47.3,
+  "modules": {
+    "认证模块": {
+      "pass": 10,
+      "fail": 0
+    },
+    "仪表盘模块": {
+      "pass": 6,
+      "fail": 0
+    },
+    "法律问答模块": {
+      "pass": 6,
+      "fail": 0
+    },
+    "合同审查模块": {
+      "pass": 5,
+      "fail": 0
+    },
+    "知识库模块": {
+      "pass": 4,
+      "fail": 0
+    },
+    "数据分析模块": {
+      "pass": 6,
+      "fail": 0
+    },
+    "通知模块": {
+      "pass": 3,
+      "fail": 0
+    },
+    "用户管理模块": {
+      "pass": 9,
+      "fail": 0
+    },
+    "前端可访问性": {
+      "pass": 5,
+      "fail": 0
+    }
+  },
+  "details": [
+    {
+      "module": "认证模块",
+      "name": "管理员登录",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 239.8
+    },
+    {
+      "module": "认证模块",
+      "name": "法务登录",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 217.2
+    },
+    {
+      "module": "认证模块",
+      "name": "普通用户登录",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 217.3
+    },
+    {
+      "module": "认证模块",
+      "name": "错误密码登录拒绝",
+      "status": "PASS",
+      "detail": "HTTP 400",
+      "duration_ms": 213.9
+    },
+    {
+      "module": "认证模块",
+      "name": "不存在用户登录拒绝",
+      "status": "PASS",
+      "detail": "HTTP 400",
+      "duration_ms": 10.5
+    },
+    {
+      "module": "认证模块",
+      "name": "获取管理员信息",
+      "status": "PASS",
+      "detail": "HTTP 200, user=admin",
+      "duration_ms": 12.0
+    },
+    {
+      "module": "认证模块",
+      "name": "获取法务信息",
+      "status": "PASS",
+      "detail": "HTTP 200, user=lawyer",
+      "duration_ms": 8.8
+    },
+    {
+      "module": "认证模块",
+      "name": "获取普通用户信息",
+      "status": "PASS",
+      "detail": "HTTP 200, user=user",
+      "duration_ms": 23.4
+    },
+    {
+      "module": "认证模块",
+      "name": "无Token访问被拒",
+      "status": "PASS",
+      "detail": "HTTP 401",
+      "duration_ms": 26.1
+    },
+    {
+      "module": "认证模块",
+      "name": "刷新令牌",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 225.5
+    },
+    {
+      "module": "仪表盘模块",
+      "name": "管理员概览",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 15.4
+    },
+    {
+      "module": "仪表盘模块",
+      "name": "法务仪表盘RBAC",
+      "status": "PASS",
+      "detail": "HTTP 403 (拒绝)",
+      "duration_ms": 50.4
+    },
+    {
+      "module": "仪表盘模块",
+      "name": "普通用户被拒",
+      "status": "PASS",
+      "detail": "HTTP 403",
+      "duration_ms": 19.4
+    },
+    {
+      "module": "仪表盘模块",
+      "name": "最近活动",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 15.1
+    },
+    {
+      "module": "仪表盘模块",
+      "name": "领域分布",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 19.7
+    },
+    {
+      "module": "仪表盘模块",
+      "name": "趋势数据",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 60.1
+    },
+    {
+      "module": "法律问答模块",
+      "name": "获取推荐问题",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 16.8
+    },
+    {
+      "module": "法律问答模块",
+      "name": "管理员额度查询",
+      "status": "PASS",
+      "detail": "remaining=-1",
+      "duration_ms": 20.7
+    },
+    {
+      "module": "法律问答模块",
+      "name": "普通用户额度查询",
+      "status": "PASS",
+      "detail": "remaining=50",
+      "duration_ms": 11.9
+    },
+    {
+      "module": "法律问答模块",
+      "name": "对话列表",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 125.0
+    },
+    {
+      "module": "法律问答模块",
+      "name": "AI法律问答",
+      "status": "PASS",
+      "detail": "HTTP 200 (9807ms)",
+      "duration_ms": 9807.1
+    },
+    {
+      "module": "法律问答模块",
+      "name": "提交问答反馈",
+      "status": "PASS",
+      "detail": "HTTP 200, msg_id=219",
+      "duration_ms": 16.9
+    },
+    {
+      "module": "合同审查模块",
+      "name": "合同历史列表",
+      "status": "PASS",
+      "detail": "count=0",
+      "duration_ms": 33.8
+    },
+    {
+      "module": "合同审查模块",
+      "name": "上传合同文件",
+      "status": "PASS",
+      "detail": "HTTP 200, id=35",
+      "duration_ms": 46.1
+    },
+    {
+      "module": "合同审查模块",
+      "name": "合同详情",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 81.8
+    },
+    {
+      "module": "合同审查模块",
+      "name": "AI合同审查",
+      "status": "PASS",
+      "detail": "HTTP 200 (33419ms)",
+      "duration_ms": 33419.0
+    },
+    {
+      "module": "合同审查模块",
+      "name": "删除合同",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 46.3
+    },
+    {
+      "module": "知识库模块",
+      "name": "文档列表",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 25.6
+    },
+    {
+      "module": "知识库模块",
+      "name": "语义搜索",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 64.2
+    },
+    {
+      "module": "知识库模块",
+      "name": "知识库统计",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 30.3
+    },
+    {
+      "module": "知识库模块",
+      "name": "文档详情",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 29.6
+    },
+    {
+      "module": "数据分析模块",
+      "name": "热点分析(管理员)",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 81.5
+    },
+    {
+      "module": "数据分析模块",
+      "name": "法条引用排行(管理员)",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 27.6
+    },
+    {
+      "module": "数据分析模块",
+      "name": "用户聚类(管理员)",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 1077.7
+    },
+    {
+      "module": "数据分析模块",
+      "name": "趋势分析(管理员)",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 30.6
+    },
+    {
+      "module": "数据分析模块",
+      "name": "分析概览(管理员)",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 26.9
+    },
+    {
+      "module": "数据分析模块",
+      "name": "普通用户被拒",
+      "status": "PASS",
+      "detail": "HTTP 403",
+      "duration_ms": 25.5
+    },
+    {
+      "module": "通知模块",
+      "name": "通知列表",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 9.1
+    },
+    {
+      "module": "通知模块",
+      "name": "未读数量",
+      "status": "PASS",
+      "detail": "unread_count=0",
+      "duration_ms": 31.2
+    },
+    {
+      "module": "通知模块",
+      "name": "全部已读",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 7.5
+    },
+    {
+      "module": "用户管理模块",
+      "name": "用户列表(管理员)",
+      "status": "PASS",
+      "detail": "count=13",
+      "duration_ms": 15.5
+    },
+    {
+      "module": "用户管理模块",
+      "name": "角色列表",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 18.7
+    },
+    {
+      "module": "用户管理模块",
+      "name": "法务被拒",
+      "status": "PASS",
+      "detail": "HTTP 403",
+      "duration_ms": 5.4
+    },
+    {
+      "module": "用户管理模块",
+      "name": "普通用户被拒",
+      "status": "PASS",
+      "detail": "HTTP 403",
+      "duration_ms": 20.8
+    },
+    {
+      "module": "用户管理模块",
+      "name": "创建测试用户",
+      "status": "PASS",
+      "detail": "HTTP 200, id=34",
+      "duration_ms": 238.9
+    },
+    {
+      "module": "用户管理模块",
+      "name": "编辑用户",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 21.3
+    },
+    {
+      "module": "用户管理模块",
+      "name": "禁用用户",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 93.0
+    },
+    {
+      "module": "用户管理模块",
+      "name": "重置密码",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 253.5
+    },
+    {
+      "module": "用户管理模块",
+      "name": "删除用户",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 14.7
+    },
+    {
+      "module": "前端可访问性",
+      "name": "首页可访问",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 5.0
+    },
+    {
+      "module": "前端可访问性",
+      "name": "index.html可访问",
+      "status": "PASS",
+      "detail": "HTTP 200",
+      "duration_ms": 14.8
+    },
+    {
+      "module": "前端可访问性",
+      "name": "API代理正常(401=正常)",
+      "status": "PASS",
+      "detail": "HTTP 401",
+      "duration_ms": 5.0
+    },
+    {
+      "module": "前端可访问性",
+      "name": "快捷登录功能存在",
+      "status": "PASS",
+      "detail": "quick-login: found",
+      "duration_ms": 53.2
+    },
+    {
+      "module": "前端可访问性",
+      "name": "主题切换功能存在",
+      "status": "PASS",
+      "detail": "theme-trigger: found",
+      "duration_ms": 50.3
+    }
+  ]
+}

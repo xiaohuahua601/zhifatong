@@ -1,0 +1,63 @@
+// ==================== 智法通全局SCSS变量（案卷墨蓝 · 与 global.scss 对齐） ====================
+
+// 主色调 - 藏青
+$primary-color: #3c4a68;
+$primary-light: #46608c;
+$primary-lighter: #5a76a5;
+$primary-dark: #2a3448;
+
+// 强调色 - 黄铜鎏金
+$accent-color: #c9a962;
+$accent-light: #dcc489;
+$accent-dark: #a3844a;
+
+// 功能色（低饱和）
+$success-color: #7ca586;
+$warning-color: #c9973f;
+$danger-color: #c05b52;
+$info-color: #7c93b5;
+
+// 背景色 - 墨蓝纸感
+$bg-primary: #11151f;
+$bg-secondary: #171d2a;
+$bg-card: rgba(30, 38, 54, 0.75);
+$bg-card-hover: rgba(60, 74, 104, 0.45);
+$bg-sidebar: #141926;
+$bg-header: rgba(20, 25, 38, 0.92);
+
+// 文字色 - 象牙白系
+$text-primary: #ece7da;
+$text-secondary: #a8a294;
+$text-muted: #767265;
+$text-accent: #c9a962;
+
+// 边框色
+$border-color: rgba(148, 158, 178, 0.18);
+$border-light: rgba(148, 158, 178, 0.1);
+
+// 毛玻璃（弱化，仅作兼容）
+$glass-bg: rgba(30, 38, 54, 0.75);
+$glass-blur: blur(12px);
+$glass-border: 1px solid rgba(201, 169, 98, 0.22);
+
+// 圆角
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;
+
+// 阴影（仅柔和黑影）
+$shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+$shadow-md: 0 4px 18px rgba(0, 0, 0, 0.45);
+$shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.55);
+$shadow-glow: 0 3px 14px rgba(0, 0, 0, 0.4);
+
+// 过渡动画
+$transition-fast: 0.15s ease;
+$transition-normal: 0.28s ease;
+$transition-slow: 0.45s ease;
+
+// 侧边栏
+$sidebar-width: 240px;
+$sidebar-collapsed-width: 64px;
+$header-height: 60px;

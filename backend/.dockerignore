@@ -1,0 +1,13 @@
+# 后端Docker忽略文件
+__pycache__
+*.pyc
+*.pyo
+.git
+.env
+.vscode
+.idea
+tests
+*.log
+uploads
+logs
+chroma_data

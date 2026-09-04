@@ -1,0 +1,9 @@
+# 前端Docker忽略文件
+node_modules
+dist
+.git
+.env.local
+.env.*.local
+*.log
+.vscode
+.idea

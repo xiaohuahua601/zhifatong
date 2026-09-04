@@ -1,0 +1,214 @@
+# ============================================================
+# 智法通 - 企业级智能法律顾问平台 Docker Compose 编排文件
+# 架构: MySQL + Redis + Backend(FastAPI) + Frontend(Nginx)
+# 使用: docker-compose up -d --build
+# ============================================================
+
+# 固定compose项目名，使本目录成为唯一编排入口（不再依赖目录名推导）
+name: zhifatong
+
+services:
+  # ----------------------------------------------------------
+  # MySQL 8.0 数据库服务
+  # 端口: 3306(内部) → 3306(主机)
+  # 数据持久化到 mysql_data 数据卷
+  # ----------------------------------------------------------
+  mysql:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/mysql:8.0
+    container_name: zhifatong-mysql
+    restart: unless-stopped
+    ports:
+      - "${MYSQL_PORT:-13306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-zhifatong_root_2026}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-zhifatong}
+      TZ: Asia/Shanghai
+      LANG: C.UTF-8
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+      - --max-connections=1000
+      - --innodb-buffer-pool-size=512M
+      - --log-bin-trust-function-creators=1
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-zhifatong_root_2026}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - zhifatong-network
+
+  # ----------------------------------------------------------
+  # Redis 7 缓存服务
+  # 容器内部端口: 6379 → 主机映射: 16379（Windows端口兼容）
+  # ----------------------------------------------------------
+  redis:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/redis:7-alpine
+    container_name: zhifatong-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-16379}:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    networks:
+      - zhifatong-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ----------------------------------------------------------
+  # Neo4j 5 法律知识图谱数据库
+  # 端口: 7474(HTTP管理界面)/7687(Bolt) → 主机映射 17474/17687
+  # 图谱数据持久化到 neo4j_data 数据卷
+  # 账号: neo4j / zhifatong_graph_2026
+  # ----------------------------------------------------------
+  neo4j:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/neo4j:5-community
+    container_name: zhifatong-neo4j
+    restart: unless-stopped
+    ports:
+      - "${NEO4J_HTTP_PORT:-17474}:7474"
+      - "${NEO4J_BOLT_PORT:-17687}:7687"
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:-zhifatong_graph_2026}
+      # 资源限制：与整体编排规格匹配
+      NEO4J_server_memory_heap_initial__size: 256m
+      NEO4J_server_memory_heap_max__size: 512m
+      NEO4J_server_memory_pagecache_size: 128m
+      TZ: Asia/Shanghai
+    volumes:
+      - neo4j_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:7474 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    networks:
+      - zhifatong-network
+
+  # ----------------------------------------------------------
+  # FastAPI 后端服务
+  # 端口: 8000(内部) → 8000(主机)
+  # 依赖MySQL和Redis健康检查通过后启动
+  # 连接本地Ollama服务(host.docker.internal:11434)
+  # ----------------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: zhifatong-backend:latest
+    container_name: zhifatong-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    environment:
+      # 数据库配置（使用ZHIFATONG_前缀，连接Docker内部网络）
+      ZHIFATONG_DB_HOST: mysql
+      ZHIFATONG_DB_PORT: 3306
+      ZHIFATONG_DB_USER: root
+      ZHIFATONG_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:-zhifatong_root_2026}
+      ZHIFATONG_DB_NAME: zhifatong
+      # 数据库连接池配置（8 workers × 20 pool = 160 connections，MySQL max_connections=1000）
+      ZHIFATONG_DB_POOL_SIZE: 20
+      ZHIFATONG_DB_MAX_OVERFLOW: 30
+      # Redis配置（Docker内部网络）
+      ZHIFATONG_REDIS_HOST: redis
+      ZHIFATONG_REDIS_PORT: 6379
+      # Neo4j知识图谱配置（连接Docker内部网络）
+      ZHIFATONG_NEO4J_URI: bolt://neo4j:7687
+      ZHIFATONG_NEO4J_USER: neo4j
+      ZHIFATONG_NEO4J_PASSWORD: ${NEO4J_PASSWORD:-zhifatong_graph_2026}
+      ZHIFATONG_NEO4J_ENABLED: "true"
+      # Ollama AI模型配置（连接本地Ollama服务）
+      ZHIFATONG_OLLAMA_BASE_URL: http://host.docker.internal:11434
+      ZHIFATONG_OLLAMA_MODEL: qwen2.5:7b-instruct-q4_K_M
+      # JWT密钥（与config.py中的字段名一致：JWT_SECRET_KEY）
+      ZHIFATONG_JWT_SECRET_KEY: zhifatong_secret_key_change_in_production_2026
+      ZHIFATONG_JWT_ACCESS_TOKEN_EXPIRE_MINUTES: 120
+      # 上传文件存储目录（与卷映射 upload_data:/app/uploads 一致）
+      ZHIFATONG_UPLOAD_DIR: /app/uploads
+      # 调试模式
+      ZHIFATONG_DEBUG: "true"
+      TZ: Asia/Shanghai
+    volumes:
+      - upload_data:/app/uploads
+      - backend_logs:/app/logs
+      # ChromaDB向量索引持久化：跨容器重建保留向量索引，避免重复Embedding计算
+      - chroma_data:/app/data/chroma
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    networks:
+      - zhifatong-network
+
+  # ----------------------------------------------------------
+  # Vue3 前端服务（Nginx静态文件 + API反向代理）
+  # 端口: 80(内部) → 80(主机)
+  # 多阶段构建: node:20-alpine编译 → nginx:alpine服务
+  # ----------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: /api
+    image: zhifatong-frontend:latest
+    container_name: zhifatong-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - zhifatong-network
+
+# ============================================================
+# 数据卷定义
+# 显式复用目录迁移前(旧项目1___)创建的数据卷，保留全部业务数据：
+# 数据库记录、向量索引、上传文件等。切勿删除这些卷。
+# ============================================================
+volumes:
+  mysql_data:
+    name: 1___mysql_data
+  redis_data:
+    name: 1___redis_data
+  upload_data:
+    name: 1___upload_data
+  backend_logs:
+    name: 1___backend_logs
+  chroma_data:
+    name: 1___chroma_data
+  neo4j_data:
+    name: zhifatong_neo4j_data
+
+# ============================================================
+# 网络定义
+# ============================================================
+networks:
+  zhifatong-network:
+    driver: bridge

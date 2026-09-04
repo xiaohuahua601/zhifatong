@@ -1,0 +1,242 @@
+{
+  "timestamp": "2026-06-30T20:57:12.867321",
+  "duration_s": 2.3,
+  "total_items": 39,
+  "deep_clean": false,
+  "details": [
+    {
+      "category": "对话",
+      "item": "conversation_id=52",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.287663"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=51",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.302349"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=50",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.315172"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=49",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.328756"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=48",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.352707"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=47",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.366540"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=46",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.379403"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=45",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.479939"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=44",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.502582"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=43",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.517098"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=42",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.532377"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=41",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.551407"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=40",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.580435"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=39",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.594590"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=38",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.610836"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=37",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.627798"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=36",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.642747"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=35",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.672666"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=34",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.690322"
+    },
+    {
+      "category": "对话",
+      "item": "conversation_id=33",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:11.704488"
+    },
+    {
+      "category": "测试用户",
+      "item": "username=xss_test_1782824108",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.001031"
+    },
+    {
+      "category": "测试用户",
+      "item": "username=xss_test_1782823989",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.014798"
+    },
+    {
+      "category": "测试用户",
+      "item": "username=xss_test_1782823990",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.042947"
+    },
+    {
+      "category": "测试用户",
+      "item": "username=xss_test_1782823928",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.059505"
+    },
+    {
+      "category": "测试用户",
+      "item": "username=xss_test_1782823929",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.076158"
+    },
+    {
+      "category": "Redis键",
+      "item": "login_fail:test",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.313547"
+    },
+    {
+      "category": "临时文件",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\tests\\test_contract.txt",
+      "size": "1180B",
+      "timestamp": "2026-06-30T20:57:12.314434"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.315974"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\agent\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.317274"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\api\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.319223"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\mcp_servers\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.320642"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\models\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.322144"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\rag\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.324124"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\services\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.325357"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\app\\utils\\__pycache__",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.326039"
+    },
+    {
+      "category": "临时文件",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\tests\\__pycache__\\test_all.cpython-313-pytest-8.4.2.pyc",
+      "size": "64452B",
+      "timestamp": "2026-06-30T20:57:12.863686"
+    },
+    {
+      "category": "临时文件",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\tests\\__pycache__\\test_all.cpython-313.pyc",
+      "size": "27144B",
+      "timestamp": "2026-06-30T20:57:12.863993"
+    },
+    {
+      "category": "临时文件",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\backend\\tests\\__pycache__\\__init__.cpython-313.pyc",
+      "size": "27063B",
+      "timestamp": "2026-06-30T20:57:12.864269"
+    },
+    {
+      "category": "临时目录",
+      "item": "E:\\临时项目\\3_大模型项目_实施\\项目1_智法通_企业级智能法律顾问平台\\.pytest_cache",
+      "size": "",
+      "timestamp": "2026-06-30T20:57:12.867089"
+    }
+  ]
+}

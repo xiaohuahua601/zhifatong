@@ -1,0 +1,1267 @@
+// ==================================================================
+// 智法通 · 案卷墨蓝 全局样式系统（庄重法务风）
+// 设计语言：深藏青墨底 + 黄铜鎏金点缀 + 象牙白衬线标题 + 纸纹肌理
+// 形态语言：素净面板 + 细金线分隔 + 圆形徽记 + 克制的淡入过渡
+// 气质定位：律所级庄重 / 法律文书感 / 无科技霓虹元素
+// ==================================================================
+
+// ==================== 设计令牌 ====================
+:root {
+  // ---- 品牌色（黄铜鎏金系） ----
+  --accent-color: #c9a962;            // 主黄铜金
+  --accent-light: #dcc489;            // 浅金
+  --accent-dark: #a3844a;             // 深铜
+  --primary-color: #3c4a68;           // 藏青
+  --primary-light: #46608c;           // 深藏青蓝
+  --primary-lighter: #5a76a5;         // 藏青亮
+  --primary-dark: #2a3448;            // 深夜青
+  --neon-cyan: #7c93b5;               // 蓝灰（辅助数据，保留旧变量名兼容）
+  --neon-cyan-light: #a9b8cd;
+  --neon-pink: #a35550;               // 肃穆砖红（保留旧变量名兼容）
+  --neon-gold: #c9a962;               // 鎏金（法律权威）
+
+  // ---- 功能色（低饱和、庄重） ----
+  --success-color: #7ca586;           // 鼠尾草绿
+  --warning-color: #c9973f;           // 琥珀
+  --danger-color: #c05b52;            // 砖红
+  --info-color: #7c93b5;              // 蓝灰
+
+  // ---- 背景层级（墨蓝纸感） ----
+  --bg-primary: #11151f;              // 深墨蓝底
+  --bg-secondary: #171d2a;            // 面板底
+  --bg-card: rgba(30, 38, 54, 0.75);  // 卡片底（半透）
+  --bg-sidebar: #141926;              // 侧边栏底
+  --bg-header: rgba(20, 25, 38, 0.92); // 顶栏底
+
+  // ---- 文字层级（象牙白系） ----
+  --text-primary: #ece7da;
+  --text-secondary: #a8a294;
+  --text-muted: #767265;
+  --text-accent: #c9a962;
+
+  // ---- 边框（石板灰细线 + 金色强调） ----
+  --border-color: rgba(148, 158, 178, 0.18);
+  --border-strong: rgba(201, 169, 98, 0.45);
+
+  // ---- 字体 ----
+  --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'STZhongsong', 'SimSun', 'Songti SC', Georgia, 'Times New Roman', serif;
+  --font-sans: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+
+  // ---- 布局尺寸 ----
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 64px;
+  --header-height: 60px;
+
+  // ---- 渐变（金与象牙的典雅过渡） ----
+  --gradient-accent: linear-gradient(135deg, #a3844a 0%, #c9a962 100%);
+  --gradient-gold: linear-gradient(135deg, #a3844a, #dcc489 50%, #a3844a);
+  --gradient-text: linear-gradient(120deg, #ece7da 0%, #e2d4a8 45%, #c9a962 100%);
+  --gradient-danger: linear-gradient(135deg, #a04a43, #c05b52);
+  --gradient-success: linear-gradient(135deg, #688e72, #7ca586);
+  --gradient-blue: linear-gradient(135deg, #3c4a68, #5a76a5);
+  --gradient-dark: linear-gradient(180deg, rgba(26, 33, 48, 0.95), rgba(17, 21, 31, 0.98));
+
+  // ---- 阴影（仅柔和黑影，无彩色光晕） ----
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  --shadow-glow-accent: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-glow-cyan: 0 3px 14px rgba(0, 0, 0, 0.4);
+  --shadow-glow-gold: 0 3px 14px rgba(0, 0, 0, 0.4);
+  --shadow-glow-danger: 0 3px 14px rgba(0, 0, 0, 0.4);
+
+  // ---- 动画（克制、安静） ----
+  --duration-fast: 0.15s;
+  --duration-normal: 0.28s;
+  --duration-slow: 0.45s;
+  --ease-spring: cubic-bezier(0.25, 0.8, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  // ---- z-index ----
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  --z-notification: 800;
+
+  // ==================== Element Plus 主题覆写（黄铜金系） ====================
+  --el-color-primary: #a8874a;
+  --el-color-primary-light-3: #b89a58;
+  --el-color-primary-light-5: #c9ab6d;
+  --el-color-primary-light-7: #d8bf8b;
+  --el-color-primary-light-8: #e2cc9f;
+  --el-color-primary-light-9: #ece0c2;
+  --el-color-primary-dark-2: #8a6f3c;
+  --el-color-success: #7ca586;
+  --el-color-success-light-3: #8fb398;
+  --el-color-success-light-5: #a5c5ac;
+  --el-color-success-light-7: #bcd7c1;
+  --el-color-success-light-8: #cce1d0;
+  --el-color-success-light-9: #ddece1;
+  --el-color-success-dark-2: #688e72;
+  --el-color-warning: #c9973f;
+  --el-color-warning-light-3: #d3a75c;
+  --el-color-warning-light-5: #ddb87f;
+  --el-color-warning-light-7: #e6caa2;
+  --el-color-warning-light-8: #ecd5b5;
+  --el-color-warning-light-9: #f2e5cc;
+  --el-color-warning-dark-2: #a67c33;
+  --el-color-danger: #c05b52;
+  --el-color-danger-light-3: #cb736b;
+  --el-color-danger-light-5: #d78d86;
+  --el-color-danger-light-7: #e3a9a3;
+  --el-color-danger-light-8: #eabab5;
+  --el-color-danger-light-9: #f1ccc9;
+  --el-color-danger-dark-2: #a04a43;
+  --el-color-error: #c05b52;
+  --el-color-error-light-3: #cb736b;
+  --el-color-error-light-5: #d78d86;
+  --el-color-error-light-7: #e3a9a3;
+  --el-color-error-light-8: #eabab5;
+  --el-color-error-light-9: #f1ccc9;
+  --el-color-error-dark-2: #a04a43;
+  --el-color-info: #7c93b5;
+  --el-color-info-light-3: #90a4c0;
+  --el-color-info-light-5: #a9b9d0;
+  --el-color-info-light-7: #c2cedf;
+  --el-color-info-light-8: #d1daea;
+  --el-color-info-light-9: #e1e7f1;
+  --el-color-info-dark-2: #677a99;
+  --el-bg-color: #171d2a;
+  --el-bg-color-page: #11151f;
+  --el-bg-color-overlay: #1c2334;
+  --el-text-color-primary: #ece7da;
+  --el-text-color-regular: #a8a294;
+  --el-text-color-secondary: #a8a294;
+  --el-text-color-placeholder: #767265;
+  --el-text-color-disabled: #565248;
+  --el-border-color: rgba(148, 158, 178, 0.2);
+  --el-border-color-light: rgba(148, 158, 178, 0.16);
+  --el-border-color-lighter: rgba(148, 158, 178, 0.12);
+  --el-border-color-extra-light: rgba(148, 158, 178, 0.08);
+  --el-fill-color: rgba(148, 158, 178, 0.08);
+  --el-fill-color-light: rgba(148, 158, 178, 0.06);
+  --el-fill-color-lighter: rgba(148, 158, 178, 0.04);
+  --el-fill-color-extra-light: rgba(148, 158, 178, 0.03);
+  --el-fill-color-dark: rgba(148, 158, 178, 0.12);
+  --el-fill-color-darker: rgba(148, 158, 178, 0.16);
+  --el-fill-color-blank: #171d2a;
+  --el-mask-color: rgba(8, 10, 16, 0.72);
+  --el-mask-color-extra-light: rgba(8, 10, 16, 0.4);
+  --el-disabled-bg-color: rgba(148, 158, 178, 0.06);
+  --el-box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+  --el-box-shadow-light: 0 4px 18px rgba(0, 0, 0, 0.45);
+
+  // ---- 旧组件令牌别名（映射到案卷墨蓝，避免未改组件掉色） ----
+  --color-brand-gold: var(--accent-color);
+  --color-brand-gold-light: var(--accent-light);
+  --color-brand-blue: #3c4a68;
+  --color-brand-blue-light: #5a76a5;
+  --color-success: var(--success-color);
+  --color-danger: var(--danger-color);
+  --color-warning: var(--warning-color);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-muted);
+  --color-border-primary: var(--border-color);
+  --color-border-secondary: rgba(148, 158, 178, 0.12);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: rgba(28, 35, 52, 0.65);
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-base: 16px;
+  --spacing-xl: 24px;
+  --spacing-3xl: 40px;
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-4xl: 32px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --radius-sm: 4px;
+  --radius-base: 6px;
+  --radius-lg: 8px;
+  --radius-circle: 999px;
+  --transition-fast: var(--duration-fast);
+  --transition-base: var(--duration-normal);
+  --line-height-relaxed: 1.7;
+  --font-family: var(--font-sans);
+}
+
+// ==================== 全局重置 ====================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  /* 数字统一等宽（表格 / 统计 / 时间更整齐） */
+  font-variant-numeric: tabular-nums;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+// ==================== 纸纹肌理层（全页面覆盖，极低透明度） ====================
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23p)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* 选中文字：鎏金底 */
+::selection {
+  background-color: rgba(201, 169, 98, 0.32);
+  color: #fff;
+}
+
+// ==================== 滚动条（石板细条） ====================
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 158, 178, 0.28);
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba(201, 169, 98, 0.4);
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 158, 178, 0.28) transparent;
+}
+
+// ==================== 动画关键帧（克制化） ====================
+
+// 渐入
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// 扫光（骨架屏微光，弱化）
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// 脉冲（弱化为轻微呼吸，仅用于必要状态指示）
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+// 方向滑入
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// 缩放弹入（收敛）
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+// 数字滚动
+@keyframes countUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+// 边框呼吸（弱化为边框提亮）
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(148, 158, 178, 0.18); }
+  50% { border-color: rgba(201, 169, 98, 0.4); }
+}
+
+// 悬浮（幅度收敛）
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+// 旋转
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// 涟漪扩散（保留供点击反馈，弱化）
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.4; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+// 缓慢漂移（背景光斑极缓移动）
+@keyframes auroraDrift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.6; }
+  50% { transform: translate(14px, -10px); opacity: 0.85; }
+}
+
+// 金线高光流动（保留供个别标题下划线，速度放缓）
+@keyframes beamFlow {
+  0% { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+
+// ==================== 通用动画 / 效果类 ====================
+
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+// 强调文字（鎏金，无霓虹发光）
+.glow-text {
+  color: var(--accent-color);
+}
+
+// 渐变文字（象牙 → 鎏金，典雅）
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// 鎏金渐变文字
+.text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ==================== 素净面板（核心卡片形态） ====================
+// 形态语言：矩形面板 + 1px 石板边框 + 顶部鎏金细线 + 圆角 6px
+.glass-card {
+  position: relative;
+  background: linear-gradient(165deg, rgba(30, 38, 54, 0.92) 0%, rgba(20, 26, 39, 0.96) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: border-color var(--duration-normal) var(--ease-smooth),
+    box-shadow var(--duration-normal) var(--ease-smooth);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+
+  // 顶部鎏金细线（静态，两侧渐隐）
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(201, 169, 98, 0.55) 35%,
+      rgba(201, 169, 98, 0.55) 65%,
+      transparent 100%
+    );
+    opacity: 0.7;
+    transition: opacity var(--duration-normal) ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // 角标（肃穆化：隐藏）
+  &::after {
+    content: none;
+  }
+
+  // 悬浮：边框微金 + 柔和阴影
+  &:hover {
+    border-color: rgba(201, 169, 98, 0.32);
+    box-shadow: var(--shadow-md);
+
+    &::before { opacity: 1; }
+  }
+}
+
+// ==================== 工具类 ====================
+
+// 交错动画延迟（列表项依次进入）
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+// 弹入动画
+.animate-in {
+  opacity: 0;
+  animation: scaleIn var(--duration-normal) var(--ease-spring) forwards;
+}
+
+// 悬浮微升（克制）
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-spring),
+    box-shadow var(--duration-normal) var(--ease-spring);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// 悬浮阴影
+.hover-glow {
+  transition: box-shadow var(--duration-normal) ease;
+
+  &:hover {
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+// 悬浮缩放（极轻）
+.hover-scale {
+  transition: transform var(--duration-fast) var(--ease-spring);
+
+  &:hover {
+    transform: scale(1.015);
+  }
+}
+
+// 金色描边容器
+.gradient-border {
+  position: relative;
+  border: none !important;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(201, 169, 98, 0.55), rgba(201, 169, 98, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+// 兼容旧类名：渐变文字
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// 骨架屏
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(148, 158, 178, 0.1);
+  border-radius: 4px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(168, 162, 148, 0.08),
+      rgba(168, 162, 148, 0.14),
+      rgba(168, 162, 148, 0.08),
+      transparent
+    );
+    animation: shimmer 2.4s infinite;
+  }
+}
+
+// ==================== Element Plus 组件深度定制（庄重金系） ====================
+
+// ---- 菜单 ----
+.el-menu {
+  border-right: none !important;
+  background: transparent !important;
+}
+
+// ---- 按钮：主按钮纯色黄铜，无渐变无发光 ----
+.el-button {
+  transition: all var(--duration-normal) var(--ease-smooth);
+  font-weight: 500;
+
+  &--primary {
+    background: #a8874a !important;
+    border: 1px solid rgba(220, 196, 137, 0.4) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover,
+    &:focus {
+      background: #b89a58 !important;
+      border-color: rgba(220, 196, 137, 0.65) !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    &:active {
+      background: #96793f !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    &.is-plain,
+    &.is-link,
+    &.is-text {
+      background: transparent !important;
+      border-color: var(--border-color) !important;
+      box-shadow: none;
+
+      &:hover {
+        background: rgba(201, 169, 98, 0.1) !important;
+        color: var(--accent-light) !important;
+      }
+    }
+  }
+
+  &--success {
+    background: #688e72 !important;
+    border: 1px solid rgba(165, 197, 172, 0.4) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover,
+    &:focus {
+      background: #749b7e !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  &--danger {
+    background: #a04a43 !important;
+    border: 1px solid rgba(215, 141, 134, 0.4) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover,
+    &:focus {
+      background: #b0534b !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  &--warning {
+    background: #a67c33 !important;
+    border: 1px solid rgba(221, 184, 127, 0.4) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover,
+    &:focus {
+      background: #b58a3c !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  // 默认按钮（素净描边）
+  &:not(.el-button--primary):not(.el-button--success):not(.el-button--danger):not(.el-button--warning):not(.is-link):not(.is-text) {
+    background: rgba(30, 38, 54, 0.55) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+
+    &:hover {
+      border-color: rgba(201, 169, 98, 0.4) !important;
+      color: var(--accent-light) !important;
+      background: rgba(201, 169, 98, 0.08) !important;
+    }
+  }
+}
+
+// ---- 对话框：素净面板 + 顶部金线 ----
+.el-dialog {
+  background: linear-gradient(170deg, #1c2334 0%, #171d2a 100%) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-lg) !important;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.7), transparent);
+    pointer-events: none;
+  }
+
+  .el-dialog__header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 22px;
+    margin-right: 0 !important;
+  }
+
+  .el-dialog__title {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    font-family: var(--font-serif);
+    letter-spacing: 1px;
+  }
+
+  .el-dialog__body {
+    color: var(--text-secondary) !important;
+    padding: 20px 22px;
+  }
+
+  .el-dialog__footer {
+    border-top: 1px solid var(--border-color);
+    padding: 14px 22px;
+  }
+}
+
+// ---- 遮罩 ----
+.el-overlay {
+  background-color: rgba(8, 10, 16, 0.72) !important;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+// ---- 表格：金线表头 + 静谧行感应 ----
+.el-table {
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: rgba(28, 35, 52, 0.9);
+  --el-table-row-hover-bg-color: rgba(201, 169, 98, 0.06);
+  --el-table-border-color: var(--border-color);
+  --el-table-border-color-light: rgba(148, 158, 178, 0.1);
+  --el-table-text-color: var(--text-secondary);
+  --el-table-header-text-color: var(--text-primary);
+
+  .el-table__row {
+    transition: background var(--duration-fast) ease;
+
+    &:hover > td {
+      background: rgba(201, 169, 98, 0.06) !important;
+    }
+  }
+
+  th.el-table__cell {
+    background: rgba(28, 35, 52, 0.9) !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    // 表头底部金线
+    border-bottom: 1px solid rgba(201, 169, 98, 0.35) !important;
+  }
+
+  // 斑马纹关闭：统一底色
+  .el-table__row--striped,
+  .el-table__row--striped td.el-table__cell {
+    background: transparent !important;
+  }
+
+  // 空数据
+  .el-table__empty-block {
+    background: transparent;
+  }
+}
+
+// ---- 标签：素净无光 ----
+.el-tag {
+  border-radius: 3px;
+  transition: all var(--duration-fast) ease;
+}
+
+// ---- 输入框：聚焦金线 ----
+.el-input {
+  --el-input-bg-color: rgba(28, 35, 50, 0.65);
+  --el-input-border-color: var(--border-color);
+  --el-input-text-color: var(--text-primary);
+  --el-input-placeholder-color: var(--text-muted);
+
+  .el-input__wrapper {
+    background: rgba(28, 35, 50, 0.65);
+    border-radius: 4px;
+    transition: all var(--duration-normal) ease;
+    box-shadow: 0 0 0 1px var(--border-color) inset !important;
+
+    &:hover {
+      box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.35) inset !important;
+    }
+
+    &.is-focus {
+      box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.6) inset !important;
+    }
+  }
+
+  // 文本域
+  &.el-textarea {
+    .el-textarea__inner {
+      background: rgba(28, 35, 50, 0.65);
+      border-radius: 4px;
+      box-shadow: 0 0 0 1px var(--border-color) inset;
+      transition: all var(--duration-normal) ease;
+
+      &:hover {
+        box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.35) inset;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.6) inset;
+      }
+    }
+  }
+}
+
+// ---- 下拉 / 弹层：墨蓝面板 ----
+.el-dropdown-menu,
+.el-select-dropdown,
+.el-picker-panel {
+  background: #1c2334 !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.el-dropdown-menu {
+  padding: 6px !important;
+
+  .el-dropdown-menu__item {
+    color: var(--text-secondary) !important;
+    border-radius: 4px;
+    transition: all var(--duration-fast) ease;
+
+    &:hover,
+    &:not(.is-disabled):hover {
+      background: rgba(201, 169, 98, 0.1) !important;
+      color: var(--accent-light) !important;
+    }
+
+    &.is-active {
+      color: var(--accent-color) !important;
+      background: rgba(201, 169, 98, 0.08) !important;
+    }
+  }
+}
+
+.el-select-dropdown {
+  .el-select-dropdown__item {
+    color: var(--text-secondary);
+
+    &.is-hovering {
+      background: rgba(201, 169, 98, 0.1);
+    }
+    &.is-selected {
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+  }
+}
+
+// ---- 消息提示 / 消息框 ----
+.el-message {
+  background: linear-gradient(170deg, #1c2334, #171d2a) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(8px);
+}
+
+.el-message-box {
+  background: linear-gradient(170deg, #1c2334, #171d2a) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-lg) !important;
+
+  .el-message-box__title {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-family: var(--font-serif);
+  }
+
+  .el-message-box__message {
+    color: var(--text-secondary);
+  }
+}
+
+// ---- 分页器 ----
+.el-pagination {
+  --el-pagination-bg-color: transparent;
+  --el-pagination-button-bg-color: rgba(28, 35, 50, 0.65);
+  --el-pagination-hover-color: var(--accent-light);
+
+  .el-pager li {
+    background: rgba(28, 35, 50, 0.65);
+    color: var(--text-secondary);
+    border-radius: 4px;
+    margin: 0 2px;
+    transition: all var(--duration-fast) ease;
+
+    &:hover {
+      color: var(--accent-light);
+    }
+
+    &.is-active {
+      background: #a8874a !important;
+      color: #fff !important;
+    }
+  }
+
+  .btn-prev,
+  .btn-next {
+    background: rgba(28, 35, 50, 0.65) !important;
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--accent-light);
+    }
+  }
+}
+
+// ---- 选项卡 ----
+.el-tabs {
+  .el-tabs__item {
+    color: var(--text-secondary);
+    transition: color var(--duration-fast) ease;
+
+    &:hover {
+      color: var(--accent-light);
+    }
+
+    &.is-active {
+      color: var(--accent-color);
+    }
+  }
+
+  .el-tabs__active-bar {
+    background: #c9a962;
+    border-radius: 1px;
+  }
+}
+
+// ---- 开关 ----
+.el-switch {
+  &.is-checked .el-switch__core {
+    background: #a8874a !important;
+    border-color: transparent !important;
+  }
+}
+
+// ---- 单选 / 多选 ----
+.el-radio__input.is-checked .el-radio__inner,
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background: #a8874a;
+  border-color: #a8874a;
+}
+
+.el-radio__input.is-checked + .el-radio__label,
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: var(--accent-light);
+}
+
+// ---- 加载 ----
+.el-loading-mask {
+  background-color: rgba(17, 21, 31, 0.68) !important;
+  backdrop-filter: blur(2px);
+}
+
+// ---- 工具提示 ----
+.el-popper.is-dark {
+  background: #1c2334 !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+
+  .el-popper__arrow::before {
+    background: #1c2334 !important;
+    border-color: var(--border-color) !important;
+  }
+}
+
+// ---- 日期选择面板 ----
+.el-date-editor,
+.el-picker__popper {
+  --el-datepicker-active-color: #a8874a;
+  --el-datepicker-hover-fill-color: rgba(201, 169, 98, 0.12);
+  --el-datepicker-inrange-bg-color: rgba(201, 169, 98, 0.1);
+  --el-datepicker-inrange-hover-bg-color: rgba(201, 169, 98, 0.16);
+  --el-datepicker-text-color: var(--text-secondary);
+  --el-datepicker-off-text-color: var(--text-muted);
+  --el-datepicker-header-text-color: var(--text-primary);
+}
+
+// ---- 卡片 ----
+.el-card {
+  background: linear-gradient(165deg, rgba(30, 38, 54, 0.9), rgba(20, 26, 39, 0.95));
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-normal) var(--ease-smooth);
+
+  &:hover {
+    border-color: rgba(201, 169, 98, 0.32);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// ---- 徽标 ----
+.el-badge__content {
+  background: #a04a43;
+  border: none;
+}
+
+// ---- 头像 ----
+.el-avatar {
+  --el-avatar-bg-color: #3c4a68;
+}
+
+// ---- 空状态 ----
+.el-empty__description p {
+  color: var(--text-muted);
+}
+
+// ---- 表单 ----
+.el-form-item__label {
+  color: var(--text-secondary);
+}
+
+// ---- 滑块 ----
+.el-slider__bar {
+  background: linear-gradient(90deg, #a3844a, #c9a962);
+}
+
+// ---- 进度条 ----
+.el-progress-bar__inner {
+  background: linear-gradient(90deg, #a3844a, #c9a962);
+}
+
+// ---- 折叠面板 ----
+.el-collapse {
+  border-color: var(--border-color);
+}
+
+// ---- 下拉选择 ----
+.el-select {
+  .el-select__wrapper {
+    background: rgba(28, 35, 50, 0.65);
+    box-shadow: 0 0 0 1px var(--border-color) inset !important;
+    border-radius: 4px;
+    transition: all var(--duration-normal) ease;
+
+    &:hover {
+      box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.35) inset !important;
+    }
+
+    &.is-focused {
+      box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.6) inset !important;
+    }
+  }
+}
+
+// ---- 通知 popper 通用 ----
+.el-popover.el-popper {
+  background: #1c2334 !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary);
+}
+
+// ==================== 主题下拉残留样式清理 ====================
+// 主题切换功能已移除，保留最小样式以防遗留类名
+.theme-color-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+// ==================================================================
+// 结构组件体系（庄重法务版 · 类名与科技版保持一致，形态全面肃穆化）
+// 页面模板无需改动即可继承以下形态
+// ==================================================================
+
+// ---- 雅致边框面板（原科技框架）：素净面板 + 顶部鎏金细线 ----
+.tech-frame {
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: linear-gradient(170deg, rgba(30, 38, 54, 0.92) 0%, rgba(21, 27, 40, 0.96) 100%);
+  transition: border-color var(--duration-normal) var(--ease-smooth),
+    box-shadow var(--duration-normal) var(--ease-smooth);
+  box-shadow: var(--shadow-sm);
+
+  // 顶部鎏金细线
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.6) 40%, rgba(201, 169, 98, 0.6) 60%, transparent);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.75;
+  }
+
+  // 角括号（肃穆化：隐藏）
+  &::after {
+    content: none;
+  }
+
+  &:hover {
+    border-color: rgba(201, 169, 98, 0.32);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// ---- 角括号（肃穆化：整体隐藏，保留类名兼容） ----
+.corner-brackets {
+  &::before,
+  &::after {
+    content: none;
+  }
+}
+
+// ---- 标准区块头：金色短竖线 + 衬线标题 + 金色渐隐细线 ----
+.tech-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .tsh-bar {
+    width: 3px;
+    height: 16px;
+    background: #c9a962;
+    flex-shrink: 0;
+  }
+
+  .tsh-title {
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-serif);
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+
+  .tsh-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .tsh-line {
+    flex: 1;
+    height: 1px;
+    min-width: 24px;
+    background: linear-gradient(90deg, rgba(201, 169, 98, 0.35), rgba(201, 169, 98, 0.12), transparent);
+  }
+
+  .tsh-extra {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+}
+
+// ---- 圆形徽记（原六边形徽章，类名保留）：圆形 + 黄铜/藏青 ----
+.hex-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #b3944f, #8a6f3c);
+  color: #f5efdf;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  flex-shrink: 0;
+
+  &.hex-gold {
+    background: linear-gradient(160deg, #c9a962, #a3844a);
+    color: #1d1810;
+  }
+
+  &.hex-cyan {
+    background: linear-gradient(160deg, #5a76a5, #3c4a68);
+    color: #ece7da;
+  }
+
+  &.hex-pink {
+    background: linear-gradient(160deg, #a35550, #8a453f);
+    color: #f5ecec;
+  }
+
+  &.hex-ghost {
+    background: rgba(28, 35, 52, 0.85);
+    color: var(--accent-light);
+    box-shadow: inset 0 0 0 1px rgba(201, 169, 98, 0.45);
+  }
+}
+
+// ---- 数字读出：衬线 + 浅金，等宽 ----
+.data-readout {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  letter-spacing: 1px;
+  color: #dcc489;
+  line-height: 1;
+}
+
+// ---- 读出框：数值两侧 [ ] 形鎏金括号（法律引注感） ----
+.readout-box {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    border-left: 1px solid rgba(201, 169, 98, 0.55);
+    border-top: 1px solid rgba(201, 169, 98, 0.55);
+    border-bottom: 1px solid rgba(201, 169, 98, 0.55);
+  }
+
+  &::after {
+    right: 0;
+    border-right: 1px solid rgba(201, 169, 98, 0.55);
+    border-top: 1px solid rgba(201, 169, 98, 0.55);
+    border-bottom: 1px solid rgba(201, 169, 98, 0.55);
+  }
+}
+
+// ---- 状态指示点（静态，无脉冲） ----
+.status-light {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+
+  &.is-on {
+    background: var(--success-color);
+  }
+
+  &.is-warn {
+    background: var(--warning-color);
+  }
+
+  &.is-off {
+    background: var(--text-muted);
+    opacity: 0.45;
+  }
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+// ---- 扫描线（肃穆化：整体隐藏，保留类名兼容） ----
+.tech-scan {
+  position: relative;
+
+  &::after {
+    content: none;
+  }
+}
+
+@keyframes scanMove {
+  0% { top: -2px; }
+  100% { top: 100%; }
+}
+
+// ---- 圆点节点（原菱形节点，类名保留）：小圆点 + 金/蓝灰 ----
+.diamond-node {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c9a962;
+  flex-shrink: 0;
+
+  &.node-cyan {
+    background: #7c93b5;
+  }
+
+  &.node-gold {
+    background: #c9a962;
+  }
+
+  &.node-hollow {
+    background: transparent;
+    border: 1px solid rgba(201, 169, 98, 0.55);
+  }
+}
+
+// ---- 页面级纸纹肌理层（父容器需 position:relative） ----
+.page-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23p)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+// ---- 小字距标签（辅助说明 / 眉标） ----
+.tech-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #8b8577;
+  white-space: nowrap;
+}
