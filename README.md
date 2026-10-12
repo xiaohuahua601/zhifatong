@@ -1,13 +1,13 @@
 # 智法通｜企业级智能法律顾问平台
 
-## 面试官速览
+## 项目概览
 
 | 关注点 | 项目实现 |
 | --- | --- |
 | 解决的问题 | 将企业法律问答、合同初审和内部资料检索集中到一个可追溯的工作台。 |
 | 核心链路 | 问答采用混合检索、融合与重排后生成带引用的回答；合同审查由 LangGraph 编排多阶段检查。 |
 | 技术重点 | FastAPI + Vue 3；ChromaDB、MySQL、Redis、Neo4j 与本地 Ollama 模型；Docker Compose 部署。 |
-| 阅读入口 | [RAG 管线](backend/app/rag/pipeline.py)、[合同审查工作流](backend/app/agent/workflow.py)、[面试实现说明](docs/智法通_面试项目介绍与实现说明.md)。 |
+| 阅读入口 | [RAG 管线](backend/app/rag/pipeline.py)、[合同审查工作流](backend/app/agent/workflow.py)、[项目实现说明](docs/智法通_面试项目介绍与实现说明.md)。 |
 | 适用边界 | 仓库内法条和案例为本地演示样例，输出只用于辅助检索与初审，不替代律师意见。 |
 
 
@@ -95,13 +95,13 @@ docker compose down
 
 首次启动会以幂等方式初始化角色、示例用户、法规文档和欢迎通知。
 
-| 账号 | 密码 | 角色 | 权限范围 |
-| --- | --- | --- | --- |
-| `admin` | `admin123` | 超级管理员 | 全部功能、用户管理 |
-| `lawyer` | `lawyer123` | 法务负责人 | 业务功能、仪表盘、数据分析 |
-| `user` | `user123456` | 普通用户 | 问答、合同审查、知识库 |
+| 账号 | 角色 | 权限范围 |
+| --- | --- | --- |
+| `admin` | 超级管理员 | 全部功能、用户管理 |
+| `lawyer` | 法务负责人 | 业务功能、仪表盘、数据分析 |
+| `user` | 普通用户 | 问答、合同审查、知识库 |
 
-仅用于本地演示。生产环境请通过环境变量管理密钥，并在首次登录后修改或移除示例账号。
+演示账号由 [种子数据模块](backend/app/init_data.py) 初始化。首次登录后请修改或移除示例账号，并通过环境变量管理密钥。
 
 ## RAG 问答流程
 
@@ -164,7 +164,7 @@ docker compose down
 
 ## 文档与阅读路径
 
-- [面试项目介绍与实现说明](docs/智法通_面试项目介绍与实现说明.md)：数据来源、模块实现、端到端流程、技术亮点和面试话术。
+- [项目介绍与实现说明](docs/智法通_面试项目介绍与实现说明.md)：数据来源、模块实现、端到端流程、技术实现和设计取舍。
 - [`backend/app/main.py`](backend/app/main.py)：应用生命周期、路由注册、索引与图谱初始化。
 - [`backend/app/rag/pipeline.py`](backend/app/rag/pipeline.py)：RAG 全流程。
 - [`backend/app/agent/workflow.py`](backend/app/agent/workflow.py)：合同审查状态图。
