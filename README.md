@@ -1,6 +1,6 @@
 # 智法通｜企业级智能法律顾问平台
 
-智法通面向企业法务和业务人员，把**法律问答、合同初审和企业文档检索**放在同一个工作台。用户提问时可以查看回答引用；上传合同后可以查看风险条款、修改建议和审查报告。系统用于辅助检索和初筛，不替代律师意见。
+智法通面向企业法务和业务人员，把**法律问答、合同初审和企业文档检索**放在同一个工作台。用户提问时可以查看回答引用；上传合同后可以查看风险条款、修改建议和审查报告。系统提供法律信息检索和合同初步审查能力。
 
 ## 用户可以完成什么
 
@@ -14,7 +14,6 @@
 
 **合同审查**：[工作流](backend/app/agent/workflow.py) 编排条款拆分、检查、风险评分、建议和报告生成。前端由 Vue 3 实现，后端由 FastAPI 提供 API；MySQL 保存业务数据，ChromaDB 保存向量索引，Neo4j 支持知识图谱，Redis 承担额度等状态管理。
 
-> 数据范围：仓库内有演示用法规摘录；法条与案例工具所需的部分 JSON 数据目录未提交。演示材料不能视为完整、实时更新的权威法律数据。
 
 ## 继续阅读
 
@@ -58,7 +57,7 @@ flowchart TB
 ### 环境要求
 
 - Docker Desktop / Docker Compose
-- 可选：本地 Ollama。项目默认使用 `qwen2.5:7b-instruct-q4_K_M`；没有模型服务时，部分向量能力会降级，但完整 AI 问答与审查需要可用的 Ollama。
+- 本地 Ollama。AI 问答与合同审查使用本地模型，默认模型为 `qwen2.5:7b-instruct-q4_K_M`。
 
 ### 启动服务
 
@@ -92,7 +91,7 @@ docker compose down
 
 > 请不要使用 `docker compose down -v`，该命令会移除数据库、上传文件和向量索引卷。
 
-## 演示账号
+## 本地初始化账号
 
 首次启动会以幂等方式初始化角色、示例用户、法规文档和欢迎通知。
 
@@ -102,7 +101,7 @@ docker compose down
 | `lawyer` | 法务负责人 | 业务功能、仪表盘、数据分析 |
 | `user` | 普通用户 | 问答、合同审查、知识库 |
 
-演示账号由 [种子数据模块](backend/app/init_data.py) 初始化。首次登录后请修改或移除示例账号，并通过环境变量管理密钥。
+账号与角色由 [种子数据模块](backend/app/init_data.py) 初始化。
 
 ## RAG 问答流程
 
@@ -130,15 +129,9 @@ docker compose down
 
 上传接口限制 PDF、DOCX、DOC、TXT 格式，并执行文件名路径遍历、扩展名、大小和 MIME 一致性校验。
 
-## 数据说明
+## 知识库数据
 
-仓库内置的法规摘录用于本地演示与检索；法条、案例工具还定义了外部 JSON 数据文件路径：
-
-- 种子法规摘录在 [`backend/app/init_data.py`](backend/app/init_data.py)。
-- [`law_search.py`](backend/app/mcp_servers/law_search.py) 和 [`case_search.py`](backend/app/mcp_servers/case_search.py) 读取各自的 `data/` JSON 文件；当前仓库未提交该目录，缺少文件时工具返回空数据。
-- 企业私有知识可通过知识库页面上传并写入 MySQL、上传卷和 ChromaDB。
-
-当前提交未包含法条与案例 JSON 数据文件；种子法规摘录也只是本地演示材料，不应表述为完整或实时更新的权威生产数据集。生产化需接入具备授权、来源、版本、生效状态和更新机制的数据源。
+项目启动时由 [种子数据模块](backend/app/init_data.py) 初始化基础法规摘录；用户可通过知识库页面上传企业文档，服务端保存文档信息、文件和向量索引。
 
 ## 项目结构
 
@@ -157,7 +150,7 @@ docker compose down
 │       ├── rag/              # 检索、Embedding、重排与生成管线
 │       ├── services/         # 领域服务
 │       ├── models/           # SQLAlchemy 模型
-│       └── mcp_servers/      # 法条、案例等工具服务及样例数据
+│       └── mcp_servers/      # 法条、案例等检索工具接口
 ├── sql/                      # MySQL 初始化脚本
 ├── docs/                     # 项目文档
 └── docker-compose.yml        # 本地编排入口
@@ -170,14 +163,6 @@ docker compose down
 - [`backend/app/rag/pipeline.py`](backend/app/rag/pipeline.py)：RAG 全流程。
 - [`backend/app/agent/workflow.py`](backend/app/agent/workflow.py)：合同审查状态图。
 - [`frontend/src/router/index.ts`](frontend/src/router/index.ts)：前端鉴权和角色路由。
-
-## 后续演进方向
-
-- 以租户、部门、密级为维度的文档 ACL 与向量检索权限过滤。
-- 使用异步任务队列承载批量 embedding、合同审查和大文件解析。
-- 建立 RAG 评测集，持续度量召回率、引用正确率、人工采纳率和 P95 时延。
-- 接入合法授权的法规/案例数据源，建立版本化与增量更新管线。
-- 接入 Secret 管理、审计日志、对象存储和生产级监控告警。
 
 ## License
 
