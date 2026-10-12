@@ -15,6 +15,22 @@
 **合同审查**：[工作流](backend/app/agent/workflow.py) 编排条款拆分、检查、风险评分、建议和报告生成。前端由 Vue 3 实现，后端由 FastAPI 提供 API；MySQL 保存业务数据，ChromaDB 保存向量索引，Neo4j 支持知识图谱，Redis 承担额度等状态管理。
 
 
+## 系统运行截图
+
+以下页面来自 2026 年 9 月 5 日的本地 Docker 演示环境，展示的是演示数据。
+
+### 仪表盘
+
+![智法通仪表盘运行截图](docs/screenshots/dashboard.png)
+
+展示咨询、合同、文档和用户概览，以及趋势图与法律知识图谱。
+
+### 合同审查
+
+![智法通合同审查运行截图](docs/screenshots/contract.png)
+
+展示合同审查记录、风险评分与报告入口。
+
 ## 继续阅读
 
 [系统入口](backend/app/main.py) · [问答管线](backend/app/rag/pipeline.py) · [合同审查工作流](backend/app/agent/workflow.py) · [项目实现说明](docs/智法通_面试项目介绍与实现说明.md)
