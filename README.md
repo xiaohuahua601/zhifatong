@@ -1,5 +1,16 @@
 # 智法通｜企业级智能法律顾问平台
 
+## 面试官速览
+
+| 关注点 | 项目实现 |
+| --- | --- |
+| 解决的问题 | 将企业法律问答、合同初审和内部资料检索集中到一个可追溯的工作台。 |
+| 核心链路 | 问答采用混合检索、融合与重排后生成带引用的回答；合同审查由 LangGraph 编排多阶段检查。 |
+| 技术重点 | FastAPI + Vue 3；ChromaDB、MySQL、Redis、Neo4j 与本地 Ollama 模型；Docker Compose 部署。 |
+| 阅读入口 | [RAG 管线](backend/app/rag/pipeline.py)、[合同审查工作流](backend/app/agent/workflow.py)、[面试实现说明](docs/智法通_面试项目介绍与实现说明.md)。 |
+| 适用边界 | 仓库内法条和案例为本地演示样例，输出只用于辅助检索与初审，不替代律师意见。 |
+
+
 > 面向企业法务与业务人员的本地化 AI 法律工作台：法律问答、合同审查、知识库检索、法律知识图谱与数据分析。
 
 ## 项目简介
@@ -120,13 +131,13 @@ docker compose down
 
 ## 数据说明
 
-仓库内置的法规摘录、`law_articles.json` 和 `cases.json` 用于本地演示、检索和图谱验证：
+仓库内置的法规摘录用于本地演示与检索；法条、案例工具还定义了外部 JSON 数据文件路径：
 
 - 种子法规摘录在 [`backend/app/init_data.py`](backend/app/init_data.py)。
-- 法条与案例样例在 [`backend/app/mcp_servers/data`](backend/app/mcp_servers/data)。
+- [`law_search.py`](backend/app/mcp_servers/law_search.py) 和 [`case_search.py`](backend/app/mcp_servers/case_search.py) 读取各自的 `data/` JSON 文件；当前仓库未提交该目录，缺少文件时工具返回空数据。
 - 企业私有知识可通过知识库页面上传并写入 MySQL、上传卷和 ChromaDB。
 
-当前案例和法条 JSON 为仓库维护的**本地演示样例**，不应表述为完整或实时更新的权威生产数据集。生产化需接入具备授权、来源、版本、生效状态和更新机制的数据源。
+当前提交未包含法条与案例 JSON 数据文件；种子法规摘录也只是本地演示材料，不应表述为完整或实时更新的权威生产数据集。生产化需接入具备授权、来源、版本、生效状态和更新机制的数据源。
 
 ## 项目结构
 
